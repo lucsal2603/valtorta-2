@@ -157,7 +157,7 @@ function intro() {
     // 0.07 → 0.24 : e sprofonda dentro il cerchio, che intanto non si muove.
     // La corsa deve bastare a portare sotto il bordo anche la testa, che a
     // riposo sta parecchio sopra il disco.
-    .to(oMedia, { yPercent: 158, duration: 0.17, ease: 'power2.in' }, 0.07)
+    .to(oMedia, { yPercent: 138, duration: 0.17, ease: 'power2.in' }, 0.07)
     // 0.20 → 0.28 : scambio fra il cerchio del titolo e il pannello.
     // Hanno lo stesso fondo e lo stesso raggio: non si vede niente.
     .to(portalEl, { opacity: 1, duration: 0.05, ease: 'none' }, 0.2)

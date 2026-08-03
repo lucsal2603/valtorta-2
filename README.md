@@ -25,10 +25,10 @@ cadono, sezioni scure che scorrono sopra l'apertura.
 Il pezzo che tiene insieme tutto è **la O**.
 
 Nel titolo d'apertura, la O di «Valtorta» non è una lettera: è un disco scuro
-con dentro la mucca, che sporge con la testa sopra il cerchio, allarga le
-braccia fuori dai bordi e si taglia sul bordo tondo all'altezza della pancia.
-La mucca galleggia piano e, in continuo, apre le braccia e alza le orecchie,
-poi richiude tutto e resta ferma un momento prima di ricominciare.
+con dentro la mucca, che sporge con la parte alta della testa sopra il cerchio,
+allarga le braccia fuori dai bordi e si taglia sul bordo tondo all'altezza
+della pancia. Apre le braccia dandosi una spinta verso l'alto, poi richiude
+tutto e resta ferma un momento prima di ricominciare.
 
 Quando si comincia a scorrere fa un saltello, con le braccia in alto, e
 sprofonda dentro il cerchio finché non sparisce. Solo allora il cerchio si
