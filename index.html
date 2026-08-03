@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Latteria Sociale di Valtorta — latte, mani, tempo</title>
+<meta name="description" content="Latteria sociale di Valtorta, alta Valle Brembana. Dal 1954 trasformiamo a mano il latte crudo dei soci: Agrì di Valtorta, Formai de Mut DOP, Stracchino all'antica.">
+<meta name="theme-color" content="#f0f0f3">
+<link rel="icon" href="assets/img/m-fdm.webp">
+<meta property="og:title" content="Latteria Sociale di Valtorta">
+<meta property="og:description" content="Dal 1954, in alta Valle Brembana. Latte, mani, tempo.">
+<meta property="og:image" content="assets/img/og.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/img/mucca-frames.webp" fetchpriority="high">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ══════════ PRELOADER ══════════ -->
+<div class="preloader" id="preloader">
+  <div class="preloader__mark">
+    <span class="preloader__line">latteria sociale</span>
+    <span class="preloader__line preloader__line--big">Valtorta<span class="dot">.</span></span>
+  </div>
+  <div class="preloader__bar"><i></i></div>
+  <div class="preloader__pct">0%</div>
+</div>
+
+<!-- ══════════ CERCHIO A TUTTO SCHERMO (la O che si apre) ══════════ -->
+<div class="portal" id="portal" aria-hidden="true">
+  <div class="portal__caption">
+    <p class="portal__kicker">In cantina</p>
+    <p class="portal__line">Qui il tempo non si compra.<br><em>Si aspetta.</em></p>
+  </div>
+</div>
+
+<!-- ══════════ NAV ══════════ -->
+<header class="nav" id="nav">
+  <a class="nav__logo" href="#top">
+    <span class="nav__logo-sm">latteria sociale</span>
+    <span class="nav__logo-lg">Valtorta<span class="dot">.</span></span>
+  </a>
+  <nav class="nav__menu" id="navMenu">
+    <a href="#cooperativa">La cooperativa</a>
+    <a href="#prodotti">Prodotti</a>
+    <a href="#mani">Come nasce</a>
+    <a href="#territorio">Territorio</a>
+    <a class="btn btn--rame" href="#contatti">Vieni in negozio</a>
+  </nav>
+  <button class="nav__burger" id="navBurger" aria-label="Apri il menu" aria-expanded="false"><i></i><i></i></button>
+</header>
+
+<!-- ══════════ HERO ══════════ -->
+<div class="hero-wrap" id="top">
+  <section class="hero" id="hero">
+    <div class="hero__grain"></div>
+
+    <!-- forme che cadono -->
+    <div class="shapes" id="shapes">
+      <img class="shape s1" src="assets/svg/goccia.svg" alt="">
+      <img class="shape s2" src="assets/svg/mezzaluna.svg" alt="">
+      <img class="shape s3" src="assets/svg/fiore.svg" alt="">
+      <img class="shape s4" src="assets/svg/mezzaluna.svg" alt="">
+      <img class="shape s5" src="assets/svg/cilindro.svg" alt="">
+      <img class="shape s6" src="assets/svg/goccia.svg" alt="">
+      <img class="shape s7" src="assets/svg/fiore.svg" alt="">
+      <img class="shape s8" src="assets/svg/mezzaluna.svg" alt="">
+      <img class="shape s9" src="assets/svg/cilindro.svg" alt="">
+      <img class="shape s10" src="assets/svg/goccia.svg" alt="">
+      <img class="shape s11" src="assets/svg/fiore.svg" alt="">
+      <img class="shape s12" src="assets/svg/mezzaluna.svg" alt="">
+    </div>
+    <canvas id="physics"></canvas>
+
+    <div class="hero__stage">
+      <h1 class="hero__title">
+        <span class="hero__row">
+          <span class="w" data-w>Valt</span>
+          <span class="o-slot" id="oSlot">
+            <span class="o-clip">
+              <span class="o-media" id="oMedia">
+                <span class="o-float">
+                  <span class="o-cow" id="oCow" role="img" aria-label="La mucca della Latteria di Valtorta, che apre le braccia e alza le orecchie"></span>
+                </span>
+              </span>
+            </span>
+          </span>
+          <span class="w" data-w>rta</span>
+        </span>
+        <span class="hero__row hero__row--serif">
+          <span class="w" data-w>latte,</span>
+          <span class="w" data-w>mani,</span>
+          <span class="w" data-w>tempo</span>
+        </span>
+      </h1>
+    </div>
+
+    <div class="hero__foot">
+      <p class="mini">@_latteriasocialevaltorta_</p>
+      <p class="mini mini--mid">Latteria sociale dal 1954, alta Valle Brembana.</p>
+      <button class="mini mini--btn" id="surprise">Clicca e guarda cosa succede</button>
+    </div>
+  </section>
+</div>
+
+<!-- ══════════ LA COOPERATIVA ══════════ -->
+<section class="sec sec--dark" id="cooperativa">
+  <div class="wrap">
+    <p class="tag" data-rise>La cooperativa</p>
+    <h2 class="h-big" data-split>Il latte arriva dalle stalle qui sopra. Le mani che lo lavorano sono <em>sempre le stesse</em>.</h2>
+    <div class="coop">
+      <p class="body-lg" data-rise>Siamo una realtà composta da piccoli produttori agroalimentari uniti in cooperazione dal 1954, ma che da sempre promuovono e valorizzano i prodotti del proprio territorio, rispettandolo e rimanendo in equilibrio con esso.</p>
+      <p class="body-lg body-lg--muted" data-rise>La montagna è generosa solo finché non si cerca di forzarle la mano. La nostra produzione media si limita a pochi chili la settimana: ci piacerebbe produrre di più, ma non vogliamo rinunciare alla provenienza esclusivamente locale degli ingredienti solo per soddisfare la richiesta di mercato.</p>
+    </div>
+
+    <div class="pillars">
+      <article class="pillar" data-rise>
+        <span class="pillar__n"><img src="assets/svg/goccia.svg" alt="" loading="lazy" decoding="async"></span>
+        <h3>Solo latte della Valle Brembana</h3>
+        <p>Usiamo esclusivamente il latte delle nostre mucche, allevate e nutrite secondo tradizione.</p>
+      </article>
+      <article class="pillar" data-rise>
+        <span class="pillar__n"><img src="assets/svg/mano.svg" alt="" loading="lazy" decoding="async"></span>
+        <h3>Con filiera manuale</h3>
+        <p>L'intera lavorazione è letteralmente nelle mani dei nostri casari. Niente catene di montaggio controllate da computer.</p>
+      </article>
+      <article class="pillar" data-rise>
+        <span class="pillar__n"><img src="assets/svg/fiore.svg" alt="" loading="lazy" decoding="async"></span>
+        <h3>Nel rispetto dei ritmi naturali</h3>
+        <p>Non acceleriamo artificiosamente nutrizione o stagionatura. Semplicemente aspettiamo.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ I TRE GRANDI ══════════ -->
+<section class="sec sec--dark sec--flush" id="prodotti">
+  <div class="wrap">
+    <div class="sec__head">
+      <p class="tag" data-rise>I nostri formaggi</p>
+      <p class="lead" data-rise>Tre di questi non esistono da nessun'altra parte con lo stesso nome. Due sono Presìdi Slow Food, uno è a denominazione protetta.</p>
+    </div>
+  </div>
+
+  <div class="cases">
+    <article class="case" data-case>
+      <div class="case__media"><img src="assets/img/p-agri.webp" alt="Agrì di Valtorta, piccoli cilindri di formaggio fresco su un tagliere" loading="lazy" decoding="async"></div>
+      <div class="case__body">
+        <h3 class="case__title">Agrì di Valtorta</h3>
+        <ul class="chips"><li>Presidio Slow Food</li><li>latte crudo intero</li><li>modellato a mano</li></ul>
+        <p>Un cilindro di tre o quattro centimetri, alto cinque o sei, che pesa una cinquantina di grammi. Nessuno stampo: prende la forma nel palmo del casaro. Fuori è compatto, dentro tenero e pastoso, e la prima cosa che arriva in bocca è una nota acidula — la stessa che gli dà il nome, dall'<em>agra</em>, il siero inacidito che si aggiunge al latte per trasformarlo.</p>
+      </div>
+    </article>
+
+    <article class="case" data-case>
+      <div class="case__media"><img src="assets/img/p-formai.webp" alt="Forma di Formai de Mut dell'alta Valle Brembana DOP tagliata" loading="lazy" decoding="async"></div>
+      <div class="case__body">
+        <h3 class="case__title">Formai de Mut DOP</h3>
+        <ul class="chips"><li>denominazione protetta</li><li>alpeggio d'estate</li><li>fieno d'inverno</li></ul>
+        <p>In bergamasco significa formaggio di monte. <em>Mut</em> è l'alpeggio, il pascolo alto dove d'estate salgono le mandrie, fra i milleduecento e i duemilatrecento metri. Cambia due volte l'anno senza che nessuno lo decida: d'estate mangia erba, d'inverno fieno di fondovalle, e il formaggio lo racconta.</p>
+      </div>
+    </article>
+
+    <article class="case" data-case>
+      <div class="case__media"><img src="assets/img/p-stracchino.webp" alt="Stracchino all'antica delle Valli Orobiche su tagliere di legno" loading="lazy" decoding="async"></div>
+      <div class="case__body">
+        <h3 class="case__title">Stracchino all'antica</h3>
+        <ul class="chips"><li>Presidio Slow Food</li><li>Valli Orobiche</li><li>latte appena munto</li></ul>
+        <p>Si faceva nelle soste della transumanza, con il poco latte di animali <em>stracchi</em> per il viaggio. Cambia con la stagione: d'estate la pasta è compatta e sa del verde dei pascoli, d'inverno si ammorbidisce e arrivano le note di fieno.</p>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ══════════ MODELLATO A MANO — scorrimento orizzontale ══════════ -->
+<section class="hscroll" id="mani">
+  <div class="hscroll__pin">
+    <div class="hscroll__head">
+      <div>
+        <p class="tag">Uno per uno</p>
+        <h2 class="hscroll__title">Dalla cagliata al cilindro, <em>senza stampi</em></h2>
+      </div>
+      <p class="hscroll__hint">scorri</p>
+    </div>
+    <div class="hscroll__track" id="hTrack">
+      <figure class="frame"><img src="assets/img/mano-01.webp" alt="La cagliata sul banco di lavorazione" loading="lazy" decoding="async"><figcaption>La cagliata sul banco</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-02.webp" alt="Il casaro stacca una porzione di cagliata" loading="lazy" decoding="async"><figcaption>Si stacca la porzione</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-03.webp" alt="La pasta viene lavorata a mano" loading="lazy" decoding="async"><figcaption>Si lavora la pasta</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-04.webp" alt="La pasta prende consistenza fra le mani" loading="lazy" decoding="async"><figcaption>Prende consistenza</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-05.webp" alt="Comincia a formarsi il piccolo cilindro" loading="lazy" decoding="async"><figcaption>Nasce il cilindro</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-06.webp" alt="Il cilindro chiuso nel pugno del casaro" loading="lazy" decoding="async"><figcaption>Chiuso nel pugno</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-07.webp" alt="La forma appoggiata sul banco di acciaio" loading="lazy" decoding="async"><figcaption>Appoggiato al banco</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-08.webp" alt="Le dita rifiniscono la superficie dell'agrì" loading="lazy" decoding="async"><figcaption>Si rifinisce</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-09.webp" alt="Gli agrì allineati sul banco" loading="lazy" decoding="async"><figcaption>In fila sul banco</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-10.webp" alt="Le forme vengono disposte sul vassoio" loading="lazy" decoding="async"><figcaption>Sul vassoio</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-11.webp" alt="Decine di agrì freschi pronti per l'asciugatura" loading="lazy" decoding="async"><figcaption>Pronti ad asciugare</figcaption></figure>
+      <figure class="frame"><img src="assets/img/mano-12.webp" alt="Agrì maturi con la crosta fiorita" loading="lazy" decoding="async"><figcaption>E poi il tempo</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ COME NASCE — slider appuntato ══════════ -->
+<section class="steps" id="comeNasce">
+  <div class="steps__pin">
+    <div class="steps__left">
+      <p class="tag tag--light">Come nasce</p>
+      <div class="steps__stack">
+        <article class="step is-on">
+          <h3>Il latte.</h3>
+          <p>Arriva crudo, intero, appena munto dalle stalle dei soci. Non fa strada: la valle finisce poco sopra il paese. Non viene standardizzato né pastorizzato, perciò cambia con l'erba, con la pioggia, con la quota dell'alpeggio.</p>
+          <ul>
+            <li>conferimento quotidiano dei soci</li>
+            <li>nessuna standardizzazione</li>
+            <li>razze di montagna</li>
+          </ul>
+        </article>
+        <article class="step">
+          <h3>La caldaia.</h3>
+          <p>Il latte viene scaldato e coagulato. La caldera in rame alimentata a legna, quella usata in cooperativa prima delle attuali, oggi è conservata al Museo di Valtorta: il gesto però è rimasto lo stesso.</p>
+          <ul>
+            <li>coagulazione con caglio</li>
+            <li>rottura della cagliata</li>
+            <li>estrazione con la tela</li>
+          </ul>
+        </article>
+        <article class="step">
+          <h3>Le mani.</h3>
+          <p>Qui il processo si separa: chi diventa forma grande va in fascera e sotto pressa, chi diventa agrì passa nel palmo del casaro, uno alla volta, senza stampi. È la parte che nessuna macchina ha mai imparato a fare.</p>
+          <ul>
+            <li>modellatura a mano</li>
+            <li>salatura a secco</li>
+            <li>nessuno stampo per l'agrì</li>
+          </ul>
+        </article>
+        <article class="step">
+          <h3>La cantina.</h3>
+          <p>Le forme salgono sulle assi di abete e restano lì. Vengono girate, spazzolate, ascoltate. L'agrì fresco è pronto in pochi giorni; il Formai de Mut aspetta mesi, e non c'è modo di convincerlo ad aspettare di meno.</p>
+          <ul>
+            <li>assi di legno, non acciaio</li>
+            <li>rivoltatura e spazzolatura</li>
+            <li>stagionatura naturale</li>
+          </ul>
+        </article>
+      </div>
+      <div class="steps__dots"><i class="is-on"></i><i></i><i></i><i></i></div>
+    </div>
+    <div class="steps__right">
+      <div class="steps__media">
+        <img class="is-on" src="assets/img/c-caldaia.webp" alt="Il latte nella vasca di lavorazione" loading="lazy" decoding="async">
+        <img src="assets/img/st-caldaia.webp" alt="La caldera in rame durante la lavorazione" loading="lazy" decoding="async">
+        <img src="assets/img/c-annusa.webp" alt="Il casaro controlla i vassoi di agrì appena formati" loading="lazy" decoding="async">
+        <img src="assets/img/c-scaffale.webp" alt="Le forme di Formai de Mut sulle assi della cantina" loading="lazy" decoding="async">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MARQUEE ══════════ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__row" data-marq="1">
+    <span>Agrì di Valtorta</span><i></i><span>Formai de Mut DOP</span><i></i><span>Stracchino all'antica</span><i></i><span>Formagella</span><i></i><span>Fiurì</span><i></i><span>Yogurt</span><i></i><span>Burro di montagna</span><i></i><span>Mascherpa</span><i></i>
+  </div>
+</div>
+
+<!-- ══════════ CITAZIONE — sezione rame ══════════ -->
+<section class="quote">
+  <div class="wrap">
+    <p class="tag tag--dark" data-rise>Sul latte</p>
+    <blockquote class="quote__big" data-split>Essere formaggio è la <em>segreta ambizione</em> del latte.</blockquote>
+    <p class="quote__by" data-rise>Fabrizio Caramagna</p>
+  </div>
+  <img class="quote__shape a" src="assets/svg/mezzaluna-scura.svg" alt="" loading="lazy" decoding="async">
+  <img class="quote__shape b" src="assets/svg/cilindro-scuro.svg" alt="" loading="lazy" decoding="async">
+  <img class="quote__shape c" src="assets/svg/goccia-scura.svg" alt="" loading="lazy" decoding="async">
+</section>
+
+<!-- ══════════ ALTRI PRODOTTI ══════════ -->
+<section class="sec sec--light" id="banco">
+  <div class="wrap">
+    <div class="sec__head sec__head--row">
+      <div>
+        <p class="tag tag--dark" data-rise>Sul banco</p>
+        <h2 class="h-mid" data-split>E poi tutto il resto di quello che sa fare il latte.</h2>
+      </div>
+      <p class="sec__note" data-rise>Il negozio è aperto tutti i giorni, domenica inclusa. Quello che trovi dipende dalla settimana e dalla stagione.</p>
+    </div>
+
+    <div class="grid-prod">
+      <article class="prod" data-rise>
+        <div class="prod__img"><img src="assets/img/pk-formagella.webp" alt="Formagelle di Valtorta impilate" loading="lazy" decoding="async"></div>
+        <h3>Formagella</h3>
+        <p>Piccola forma cilindrica di collina e montagna bergamasca — <em>formagéla</em>, piccola formaggia. Pasta morbida, gusto delicato, pezzatura da famiglia.</p>
+      </article>
+      <article class="prod" data-rise>
+        <div class="prod__img"><img src="assets/img/pk-fiuri.webp" alt="Confezione di Fiurì di Valtorta" loading="lazy" decoding="async"></div>
+        <h3>Fiurì</h3>
+        <p>Si ricava dal siero che avanza dalla fabbricazione del formaggio. Non è complicato da fare, è solo lunghissimo: per questo per anni era quasi introvabile.</p>
+      </article>
+      <article class="prod" data-rise>
+        <div class="prod__img"><img src="assets/img/pk-yogurt.webp" alt="Vasetto di yogurt naturale intero della latteria" loading="lazy" decoding="async"></div>
+        <h3>Yogurt naturale</h3>
+        <p>Latte intero e due fermenti. Durante la fermentazione parte del lattosio diventa acido lattico: da lì il sapore, da lì la digeribilità.</p>
+      </article>
+      <article class="prod" data-rise>
+        <div class="prod__img"><img src="assets/img/pk-burro.webp" alt="Panetto di burro a latte crudo della latteria di Valtorta" loading="lazy" decoding="async"></div>
+        <h3>Burro di montagna</h3>
+        <p>A latte crudo, dalla panna di affioramento. Colore e profumo cambiano quando le mucche salgono in alpeggio, e si vede a occhio nudo.</p>
+      </article>
+      <article class="prod" data-rise>
+        <div class="prod__img"><img src="assets/img/pk-ricotta.webp" alt="Mascherpa, la ricotta della latteria di Valtorta" loading="lazy" decoding="async"></div>
+        <h3>Mascherpa</h3>
+        <p>La ricotta, come si chiama qui. Ancora siero, ancora calore, ancora attesa: la seconda vita di quello che sembrava scarto.</p>
+      </article>
+      <article class="prod prod--cta" data-rise>
+        <h3>Lo trovi anche online</h3>
+        <p>Una parte dei nostri prodotti si ordina dal negozio della valle.</p>
+        <a class="btn btn--dark" href="https://www.shop.altobrembo.it" target="_blank" rel="noopener">shop.altobrembo.it</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ TERRITORIO ══════════ -->
+<section class="sec sec--light sec--noline" id="territorio">
+  <div class="wrap">
+    <div class="sec__head sec__head--row">
+      <div>
+        <p class="tag tag--dark" data-rise>Il territorio</p>
+        <h2 class="h-mid" data-split>Trecento abitanti, ai piedi del Pizzo dei Tre Signori.</h2>
+      </div>
+      <p class="sec__note" data-rise>Il legame con il territorio è sempre stato la parte non negoziabile della nostra storia: l'attività agricola presidia la valle, e gli allevatori ne sono i custodi.</p>
+    </div>
+
+    <div class="list" id="territorioList">
+      <a class="row" href="#contatti">
+        <span class="row__t">La cooperativa</span>
+        <span class="row__d">Vieni a vedere dove si fa</span>
+        <span class="row__a">Via Roma, 10</span>
+        <span class="row__ph"><img src="assets/img/v-paese.webp" alt="Il borgo di Valtorta" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="row" href="http://www.ecomuseodivaltorta.com/" target="_blank" rel="noopener">
+        <span class="row__t">Museo Etnografico</span>
+        <span class="row__d">Dove è finita la vecchia caldera in rame</span>
+        <span class="row__a">0345 87713</span>
+        <span class="row__ph"><img src="assets/img/v-museo.webp" alt="Interno del museo etnografico di Valtorta" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="row" href="#banco">
+        <span class="row__t">Gli alpeggi</span>
+        <span class="row__d">Da milleduecento a duemilatrecento metri</span>
+        <span class="row__a">d'estate</span>
+        <span class="row__ph"><img src="assets/img/v-baita.webp" alt="Baita di alpeggio sopra Valtorta" loading="lazy" decoding="async"></span>
+      </a>
+      <a class="row" href="#prodotti">
+        <span class="row__t">Marchio Valle Brembana</span>
+        <span class="row__d">Collettivo e geografico, istituito nel 1997</span>
+        <span class="row__a">Comunità Montana</span>
+        <span class="row__ph"><img src="assets/img/v-acqua.webp" alt="Il torrente e le vecchie strutture della valle" loading="lazy" decoding="async"></span>
+      </a>
+    </div>
+
+    <div class="marks" data-rise>
+      <img src="assets/img/m-dop.webp" alt="Denominazione di Origine Protetta" loading="lazy" decoding="async">
+      <img src="assets/img/m-slowfood.webp" alt="Slow Food" loading="lazy" decoding="async">
+      <img src="assets/img/m-fdm.webp" alt="Consorzio Formai de Mut" loading="lazy" decoding="async">
+      <img src="assets/img/m-brembana.webp" alt="Prodotti della Valle Brembana" loading="lazy" decoding="async">
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ STORIA ══════════ -->
+<section class="storia">
+  <div class="wrap">
+    <div class="storia__grid">
+      <div class="storia__txt">
+        <p class="tag" data-rise>Settant'anni</p>
+        <h2 class="h-mid h-mid--light" data-split>Il 5 dicembre 1954 un gruppo di allevatori decise di smettere di fare il formaggio a turno.</h2>
+        <p class="body-lg" data-rise>La <em>latteria turnaria</em> era apprezzata ma ormai inadeguata: ognuno lavorava il latte di tutti nel proprio giorno. Unirsi in cooperativa voleva dire trasformare insieme il latte conferito da tutti i soci — e dare continuità a un mestiere che, senza il caseificio sociale, in una valle così alta si sarebbe semplicemente fermato.</p>
+        <p class="body-lg body-lg--muted" data-rise>Allevare bestiame nelle Terre Alte richiede passione, impegno e fatica: significa operare in equilibrio con un ambiente prezioso e bello, ma anche fragile e talvolta ostile.</p>
+      </div>
+      <div class="storia__ph">
+        <figure><img src="assets/img/st-caldaia.webp" alt="La lavorazione nella caldera in rame, immagine d'archivio" loading="lazy" decoding="async"><figcaption>La caldera in rame alimentata a legna, oggi al Museo di Valtorta</figcaption></figure>
+        <figure><img src="assets/img/st-abramo.webp" alt="Abramo, storico casaro della cooperativa" loading="lazy" decoding="async"><figcaption>Abramo, storico casaro della cooperativa</figcaption></figure>
+        <figure><img src="assets/img/st-casaro.webp" alt="Un casaro al lavoro in caseificio, immagine d'archivio" loading="lazy" decoding="async"><figcaption>In caseificio, immagini d'archivio</figcaption></figure>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<div class="foot-wrap">
+<footer class="foot" id="contatti">
+  <div class="wrap">
+    <p class="foot__claim"><span data-split>Passa a trovarci.</span> <em>Il negozio è aperto anche di domenica.</em></p>
+
+    <div class="foot__cols">
+      <div class="foot__col">
+        <p class="tag tag--light">Dove siamo</p>
+        <p class="foot__big">Via Roma, 10<br>24010 Valtorta (BG)</p>
+        <p class="foot__sm">Latteria Sociale di Valtorta<br>P.I. e C.F. 00669540163</p>
+      </div>
+      <div class="foot__col">
+        <p class="tag tag--light">Orari del negozio</p>
+        <p class="foot__big">8.00 — 12.30<br>14.30 — 18.30</p>
+        <p class="foot__sm">Tutti i giorni, domenica inclusa</p>
+      </div>
+      <div class="foot__col">
+        <p class="tag tag--light">Contatti</p>
+        <p class="foot__big"><a href="tel:+39034587770">0345 87770</a></p>
+        <p class="foot__sm">
+          <a href="mailto:latteriavaltorta@gmail.com">latteriavaltorta@gmail.com</a><br>
+          <a href="mailto:valtorta@pec.it">valtorta@pec.it</a>
+        </p>
+      </div>
+      <div class="foot__col">
+        <p class="tag tag--light">Altrove</p>
+        <p class="foot__sm foot__sm--links">
+          <a href="https://instagram.com/_latteriasocialevaltorta_" target="_blank" rel="noopener">Instagram</a><br>
+          <a href="https://www.shop.altobrembo.it" target="_blank" rel="noopener">Shop online</a><br>
+          <a href="http://www.ecomuseodivaltorta.com/" target="_blank" rel="noopener">Ecomuseo di Valtorta</a>
+        </p>
+      </div>
+    </div>
+
+    <div class="foot__word" aria-hidden="true">Valtorta</div>
+
+    <div class="foot__bar">
+      <p>© <span id="yy">2026</span> Latteria Sociale di Valtorta</p>
+      <a href="#top" class="foot__top">Torna su</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+<div class="cursor" id="cursor"><span>guarda</span></div>
+
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8"><title>QA — Latteria Valtorta</title>
+<style>
+  html,body{margin:0;background:#111;font:12px/1.4 ui-monospace,monospace;color:#ddd}
+  #stage{position:relative;overflow:hidden;background:#000}
+  iframe{border:0;display:block;transform-origin:0 0}
+  #hud{position:fixed;right:8px;top:8px;z-index:9;background:#000c;padding:6px 10px;border-radius:6px}
+</style></head><body>
+<div id="stage"><iframe id="f" src="/index.html"></iframe></div>
+<div id="hud">—</div>
+<script>
+  const params = new URLSearchParams(location.search);
+  const W = +(params.get('w') || 1440);
+  const H = +(params.get('h') || 900);
+  const Y = +(params.get('y') || 0);          // scroll assoluto in px
+  const P = params.get('p');                  // oppure: frazione 0..1 del documento
+  const SC = +(params.get('s') || 1);         // scala di visualizzazione
+  const f = document.getElementById('f'), stage = document.getElementById('stage'), hud = document.getElementById('hud');
+  f.style.width = W + 'px'; f.style.height = H + 'px'; f.style.transform = `scale(${SC})`;
+  stage.style.width = (W * SC) + 'px'; stage.style.height = (H * SC) + 'px';
+
+  f.addEventListener('load', () => {
+    const w = f.contentWindow, d = f.contentDocument;
+    // salta il preloader
+    const kill = () => { const p = d.getElementById('preloader'); if (p) p.remove(); d.body.classList.remove('is-locked'); w.lenis?.start(); };
+    setTimeout(kill, 100);
+    setTimeout(() => {
+      const docH = d.body.scrollHeight;
+      const y = P != null ? Math.round(docH * parseFloat(P)) : Y;
+      if (w.lenis) w.lenis.scrollTo(y, { immediate: true, force: true });
+      w.scrollTo(0, y);
+      w.ScrollTrigger?.update();
+      w.ScrollTrigger?.getAll().forEach(st => { const t = st.getTween?.(); if (t) t.progress(1); });
+      w.ScrollTrigger?.update();
+      setTimeout(() => {
+        const o = d.getElementById('oSlot')?.getBoundingClientRect();
+        // chi sfora in orizzontale?
+        const over = [...d.querySelectorAll('body *')].filter(el => {
+          const r = el.getBoundingClientRect();
+          return r.width > 0 && (r.right > w.innerWidth + 1 || r.left < -1);
+        }).slice(0, 14).map(el => (el.tagName + '.' + String(el.className).split(' ')[0]).slice(0, 34));
+        hud.innerHTML = `${W}x${H} · y=${y}/${docH} · vw=${w.innerWidth} · O=${o ? Math.round(o.width) : '-'}px @${o ? Math.round(o.left + o.width / 2) : '-'},${o ? Math.round(o.top + o.height / 2) : '-'} · clip=${w.getComputedStyle(d.getElementById('portal')).clipPath}`
+          + `<br>scrollW=${d.documentElement.scrollWidth} clientW=${d.documentElement.clientWidth}`
+          + `<br>SFORA: ${over.length ? over.join(', ') : 'nessuno'}`;
+        document.title = 'QA ready';
+      }, 260);
+    }, 700);
+  });
+</script>
+</body></html>

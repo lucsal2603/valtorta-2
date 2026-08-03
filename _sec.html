@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="it"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>QA sezione</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* neutralizza le animazioni a scorrimento: qui serve solo la resa statica */
+  [data-rise]{opacity:1!important;transform:none!important}
+  .sw>i{transform:none!important}
+  .step{position:relative!important;opacity:1!important;transform:none!important;margin-bottom:44px}
+  .steps__stack{min-height:0!important}
+  .steps__pin{height:auto!important}
+  .hscroll__pin{height:auto!important}
+  .hscroll__track{overflow-x:auto}
+  .steps__media img{opacity:0}
+  .steps__media img:first-child{opacity:1!important}
+  body{padding-top:0}
+</style>
+</head><body>
+<div id="ruler" style="position:fixed;z-index:999;top:0;left:0;width:400px;height:4px;background:#f0f;pointer-events:none"></div>
+<div id="host"></div>
+<script>
+(async () => {
+  const sel = new URLSearchParams(location.search).get('sel') || '#cooperativa';
+  const html = await (await fetch('index.html')).text();
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  const nodes = sel.split('|').map(s => doc.querySelector(s.trim())).filter(Boolean);
+  const host = document.getElementById('host');
+  nodes.forEach(n => host.appendChild(n));
+  // rimpicciolisce solo la resa, non il layout: le misure in vw restano quelle vere
+  const z = parseFloat(new URLSearchParams(location.search).get('z') || '1');
+  if (z !== 1) {
+    host.style.transformOrigin = 'top left';
+    host.style.transform = `scale(${z})`;
+    document.getElementById('ruler').style.transform = `scale(${z})`;
+    document.getElementById('ruler').style.transformOrigin = 'top left';
+  }
+  // stato del portale a piacere: ?portal=0.35 (frazione di apertura)
+  const pf = new URLSearchParams(location.search).get('portal');
+  const portal = document.querySelector('.portal');
+  if (portal && pf != null) {
+    // in unità CSS: il pane non sa dire innerWidth, il motore di resa sì
+    const f = parseFloat(pf);
+    portal.style.opacity = 1;
+    portal.style.setProperty('--px', '50vw');
+    portal.style.setProperty('--py', '42vh');
+    portal.style.setProperty('--pr', `calc(118px + (75vw - 118px) * ${f})`);
+    if (f > 0.8) {
+      portal.querySelector('.portal__veil').style.opacity = 1;
+      const c = portal.querySelector('.portal__caption');
+      c.style.opacity = 1; c.style.transform = 'none';
+    }
+  }
+  document.title = 'sezione pronta';
+})();
+</script>
+</body></html>
