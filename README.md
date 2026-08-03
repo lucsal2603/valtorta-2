@@ -8,6 +8,8 @@ python3 -m http.server 8034 --directory .
 # → http://localhost:8034
 ```
 
+**Online**: https://lucsal2603.github.io/valtorta-2/
+
 Contenuti e fotografie vengono dal sito del cliente, `latteriavaltorta.it/wp/`.
 Quello che ho scritto io è elencato in [DA-VERIFICARE.md](DA-VERIFICARE.md).
 
@@ -62,14 +64,16 @@ Google Fonts, come sull'originale.
 - **Apertura** — la O con la mucca, dodici forme che galleggiano, e un pulsante
   in basso a destra: cliccandolo le forme cadono davvero (Matter.js) e si
   possono spingere col mouse.
-- **La mucca** — quindici disegni in una striscia verticale
-  (`mucca-frames.webp`), scorsi da un'animazione CSS: gira fuori dal thread
-  principale, quindi non salta nemmeno mentre il resto della pagina lavora. Il
-  giro dura cinque secondi, di cui gli ultimi due terzi sono fermi sulla posa di
-  riposo. Le braccia si aprono fino al sesto disegno, non fino all'ottavo:
-  quanto basta per uscire dal cerchio senza spalancarle. Il galleggio è una
-  seconda animazione, su un elemento a parte, così il saltello e il ciclo dei
-  disegni non se la portano via.
+- **La mucca** — quarantacinque disegni, che però sono un palindromo esatto:
+  in `mucca-frames.webp` ne stanno ventitré (dal riposo al picco), rigiocati
+  avanti e poi indietro. Li muove un'animazione CSS, che gira fuori dal thread
+  principale e quindi non salta nemmeno mentre il resto della pagina lavora. Il
+  giro dura cinque secondi: trentacinque scatti di movimento e poi la posa di
+  riposo ferma per l'ultimo quarto. L'oscillazione si ferma al diciottesimo
+  disegno invece che al ventitreesimo, così le braccia escono dal cerchio senza
+  spalancarsi del tutto — è il numero da cambiare se le si vuole più o meno
+  aperte. Il galleggio è una seconda animazione, su un elemento a parte, così il
+  saltello e il ciclo dei disegni non se la portano via.
 - **Il taglio** — una maschera a due strati (il cerchio del disco, più un
   rettangolo che copre tutto quello che sta sopra l'88% della sua altezza) su un
   elemento **fermo**, non su quello che GSAP trasla. La scatola della maschera è
