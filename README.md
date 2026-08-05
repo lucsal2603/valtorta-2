@@ -61,6 +61,10 @@ Google Fonts, come sull'originale.
 
 ## I momenti
 
+- **Il caricamento** — la mucca corre in loop sopra il marchio, mentre la barra
+  si riempie. È un WebP animato: l'originale pesava 2,6 MB, troppo per la prima
+  cosa che si vede, quindi è ridotto a dodici fotogrammi a 9 al secondo e 300px
+  di larghezza — 229 KB.
 - **Apertura** — la O con la mucca, dodici forme che galleggiano, e un pulsante
   in basso a destra: cliccandolo le forme cadono davvero (Matter.js) e si
   possono spingere col mouse.

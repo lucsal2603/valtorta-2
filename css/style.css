@@ -112,6 +112,10 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   display:flex; flex-direction:column; align-items:center; justify-content:center; gap:34px;
 }
 .preloader.is-out{ opacity:0; visibility:hidden; transition:opacity .55s var(--ease-out), visibility .55s; }
+.preloader__mucca{
+  width:clamp(96px,13vw,168px); height:auto; margin-bottom:-6px;
+  filter:drop-shadow(0 14px 26px #00000059);
+}
 .preloader__mark{ display:flex; flex-direction:column; align-items:center; line-height:1; }
 .preloader__line{ font-size:12px; font-weight:500; letter-spacing:1.6px; text-transform:uppercase; color:var(--su-scuro); }
 .preloader__line--big{ font-size:clamp(38px,7vw,64px); font-weight:600; letter-spacing:-1px;
@@ -631,6 +635,14 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   margin-top:clamp(50px,7vw,90px); padding-top:clamp(30px,4vw,50px);
   border-top:1px solid var(--g300);
   display:flex; flex-wrap:wrap; align-items:center; gap:clamp(28px,5vw,70px);
+}
+/* la mucca sporge in fondo alla fila dei marchi e li indica */
+.marks{ position:relative; }
+.marks__indica{
+  margin-left:auto; align-self:flex-end;
+  width:clamp(86px,9vw,140px); aspect-ratio:823/965;
+  background:url("../assets/img/mucca-indica.webp?v=21") 50% 100% / contain no-repeat;
+  pointer-events:none;
 }
 .marks img{ height:clamp(46px,5.2vw,70px); width:auto; object-fit:contain; opacity:.9;
   mix-blend-mode:multiply; transition:opacity .3s ease, transform .3s var(--ease-out); }
