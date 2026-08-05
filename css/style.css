@@ -233,7 +233,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   position:absolute; left:50%; top:-15%; width:68%;
   transform:translateX(-50%);
   aspect-ratio:300/581;
-  background:url("../assets/img/mucca-frames.webp") 50% 0 / 100% 2300% no-repeat;
+  background:url("../assets/img/mucca-frames.webp?v=21") 50% 0 / 100% 2300% no-repeat;
   animation:mucca 5s steps(1,end) infinite;
 }
 /* Quarantacinque disegni, che sono un palindromo esatto: in memoria ne bastano
@@ -471,7 +471,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .steps__indica{
   position:absolute; right:100%; top:8%;
   width:clamp(84px,9.5vw,150px); aspect-ratio:823/965;
-  background:url("../assets/img/mucca-indica.webp") 100% 50% / contain no-repeat;
+  background:url("../assets/img/mucca-indica.webp?v=21") 100% 50% / contain no-repeat;
   pointer-events:none; z-index:3;
 }
 .steps__media img{
@@ -533,7 +533,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
      a cavallo del bordo con yPercent -5.5 (misurato sul disegno) */
   position:absolute; top:0; left:50%; z-index:1;
   width:clamp(72px,8vw,118px); aspect-ratio:340/748;
-  background:url("../assets/img/mucca-appesa.webp") 50% 0 / contain no-repeat;
+  background:url("../assets/img/mucca-appesa.webp?v=21") 50% 0 / contain no-repeat;
   pointer-events:none;
 }
 

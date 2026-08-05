@@ -485,9 +485,12 @@ function intro() {
   const el = document.querySelector('.foot__word');
   if (!el) return;
   if (REDUCED) { el.style.setProperty('--fw', '100%'); return; }
+  // il traguardo è il fondo pagina, non un punto del viewport: la parola sta
+  // così in basso che "top 42%" cadeva oltre lo scroll massimo e il
+  // riempimento si fermava al 64%
   gsap.fromTo(el, { '--fw': '0%' }, {
     '--fw': '100%', ease: 'none',
-    scrollTrigger: { trigger: el, start: 'top 94%', end: 'top 42%', scrub: 0.4 },
+    scrollTrigger: { trigger: el, start: 'top 96%', end: 'max', scrub: 0.4 },
   });
 })();
 
