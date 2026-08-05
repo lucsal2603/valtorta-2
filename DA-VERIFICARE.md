@@ -63,8 +63,8 @@ Altrove:
 ## La mucca
 
 Il personaggio nel cerchio (quarantacinque disegni: sta in piedi e muove la
-coda) e quello infilato nel buco a schermo pieno (sedici disegni)
-**non vengono dal cliente**: me l'ha passato Lucas, generato a parte.
+coda) e quello che sporge da dietro la fotografia in "Come nasce"
+**non vengono dal cliente**: me li ha passati Lucas, generati a parte.
 Prima di andare online va deciso se diventa un elemento del marchio della
 latteria, e se sì va rifatto in vettoriale — adesso sono immagini, quindi non
 sono ridimensionabili all'infinito né modificabili nei dettagli.

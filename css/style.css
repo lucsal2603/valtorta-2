@@ -220,17 +220,17 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   display:block; will-change:transform;
 }
 /* La spinta sta qui, così il saltello e il ciclo dei disegni non se la portano
-   via. Dura quanto il ciclo dei disegni, così sale insieme alle braccia: su
-   mentre apre, giù mentre richiude, ferma durante la pausa. */
-.o-float{ position:absolute; inset:0; display:block; animation:pulsa 5s ease-in-out infinite; }
+   via. Dura un terzo esatto del ciclo dei disegni: si ripete tre volte per giro
+   e alla fine del giro i due tornano in fase insieme. */
+.o-float{ position:absolute; inset:0; display:block; animation:pulsa 1.6667s ease-in-out infinite; }
 @keyframes pulsa{
   0%, 6%     { transform:translateY(0); }
-  35%        { transform:translateY(-6%); }
-  70%, 100%  { transform:translateY(0); }
+  44%        { transform:translateY(-5%); }
+  82%, 100%  { transform:translateY(0); }
 }
 
 .o-cow{
-  position:absolute; left:50%; top:-10%; width:72%;
+  position:absolute; left:50%; top:-15%; width:68%;
   transform:translateX(-50%);
   aspect-ratio:300/581;
   background:url("../assets/img/mucca-frames.webp") 50% 0 / 100% 2300% no-repeat;
@@ -326,43 +326,12 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   content:""; position:absolute; inset:0; opacity:.05; pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
-/* la mucca infilata nel buco, al centro del nero. Il centraggio lo fa la
-   griglia, non un transform: così GSAP può prendersi il transform per
-   l'entrata senza cancellare la posizione. */
-.portal__stage{
-  position:absolute; inset:0; z-index:2;
-  display:grid; place-items:center;
-  padding-bottom:clamp(30px,7vh,90px); pointer-events:none;
-}
-.portal__cow{
-  display:block; width:clamp(210px,33vw,540px); aspect-ratio:520/345;
-  background:url("../assets/img/mucca-incastrata.webp") 50% 0 / 100% 1600% no-repeat;
-  animation:zampe 1.4s steps(1,end) infinite;
-  opacity:0;
-}
-/* i sedici disegni sono già un giro completo: il primo e l'ultimo coincidono */
-@keyframes zampe{
-  0.0% { background-position-y:0.0%; }
-  6.25% { background-position-y:6.667%; }
-  12.5% { background-position-y:13.333%; }
-  18.75% { background-position-y:20.0%; }
-  25.0% { background-position-y:26.667%; }
-  31.25% { background-position-y:33.333%; }
-  37.5% { background-position-y:40.0%; }
-  43.75% { background-position-y:46.667%; }
-  50.0% { background-position-y:53.333%; }
-  56.25% { background-position-y:60.0%; }
-  62.5% { background-position-y:66.667%; }
-  68.75% { background-position-y:73.333%; }
-  75.0% { background-position-y:80.0%; }
-  81.25% { background-position-y:86.667%; }
-  87.5% { background-position-y:93.333%; }
-  93.75% { background-position-y:100.0%; }
-}
 
 .portal__caption{
-  position:absolute; left:var(--pad-x); right:var(--pad-x); bottom:clamp(48px,9vh,110px);
-  color:var(--card); opacity:0; transform:translateY(24px); z-index:2;
+  position:absolute; inset:0; z-index:2;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding-inline:var(--pad-x); text-align:center;
+  color:var(--card); opacity:0; transform:translateY(24px);
 }
 .portal__kicker{
   font-size:12px; font-weight:500; letter-spacing:.6px; text-transform:uppercase;
@@ -370,7 +339,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 }
 .portal__line{
   font-size:clamp(30px,5.2vw,72px); font-weight:600; line-height:1.06; letter-spacing:-.6px;
-  max-width:16ch;
+  max-width:17ch;
 }
 
 /* ═══════════ SEZIONI ═══════════ */
@@ -491,6 +460,13 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .steps__media{
   position:relative; width:100%; aspect-ratio:4/5; max-height:74vh;
   border-radius:var(--r); overflow:hidden; background:var(--dark); margin-inline:auto;
+}
+/* la mucca sporge da dietro il bordo sinistro della foto e indica il testo */
+.steps__indica{
+  position:absolute; right:100%; bottom:8%;
+  width:clamp(84px,9.5vw,150px); aspect-ratio:823/965;
+  background:url("../assets/img/mucca-indica.webp") 100% 50% / contain no-repeat;
+  pointer-events:none; z-index:3;
 }
 .steps__media img{
   position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
