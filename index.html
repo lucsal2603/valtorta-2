@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/img/mucca-frames.webp" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/style.css?v=6">
 </head>
 <body>
 
@@ -33,8 +33,11 @@
 
 <!-- ══════════ CERCHIO A TUTTO SCHERMO (la O che si apre) ══════════ -->
 <div class="portal" id="portal" aria-hidden="true">
+  <div class="portal__stage">
+    <span class="portal__cow" id="portalCow" role="img" aria-label="La mucca infilata nel cerchio, con le zampe che scalciano"></span>
+  </div>
   <div class="portal__caption">
-    <p class="portal__kicker">In cantina</p>
+    <p class="portal__kicker">Ci vuole pazienza</p>
     <p class="portal__line">Qui il tempo non si compra.<br><em>Si aspetta.</em></p>
   </div>
 </div>
@@ -442,6 +445,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
-<script src="js/main.js"></script>
+<script src="js/main.js?v=6"></script>
 </body>
 </html>

@@ -326,6 +326,40 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   content:""; position:absolute; inset:0; opacity:.05; pointer-events:none;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+/* la mucca infilata nel buco, al centro del nero. Il centraggio lo fa la
+   griglia, non un transform: così GSAP può prendersi il transform per
+   l'entrata senza cancellare la posizione. */
+.portal__stage{
+  position:absolute; inset:0; z-index:2;
+  display:grid; place-items:center;
+  padding-bottom:clamp(30px,7vh,90px); pointer-events:none;
+}
+.portal__cow{
+  display:block; width:clamp(210px,33vw,540px); aspect-ratio:520/345;
+  background:url("../assets/img/mucca-incastrata.webp") 50% 0 / 100% 1600% no-repeat;
+  animation:zampe 1.4s steps(1,end) infinite;
+  opacity:0;
+}
+/* i sedici disegni sono già un giro completo: il primo e l'ultimo coincidono */
+@keyframes zampe{
+  0.0% { background-position-y:0.0%; }
+  6.25% { background-position-y:6.667%; }
+  12.5% { background-position-y:13.333%; }
+  18.75% { background-position-y:20.0%; }
+  25.0% { background-position-y:26.667%; }
+  31.25% { background-position-y:33.333%; }
+  37.5% { background-position-y:40.0%; }
+  43.75% { background-position-y:46.667%; }
+  50.0% { background-position-y:53.333%; }
+  56.25% { background-position-y:60.0%; }
+  62.5% { background-position-y:66.667%; }
+  68.75% { background-position-y:73.333%; }
+  75.0% { background-position-y:80.0%; }
+  81.25% { background-position-y:86.667%; }
+  87.5% { background-position-y:93.333%; }
+  93.75% { background-position-y:100.0%; }
+}
+
 .portal__caption{
   position:absolute; left:var(--pad-x); right:var(--pad-x); bottom:clamp(48px,9vh,110px);
   color:var(--card); opacity:0; transform:translateY(24px); z-index:2;

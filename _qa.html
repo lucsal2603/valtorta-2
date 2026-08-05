@@ -6,7 +6,7 @@
   iframe{border:0;display:block;transform-origin:0 0}
   #hud{position:fixed;right:8px;top:8px;z-index:9;background:#000c;padding:6px 10px;border-radius:6px}
 </style></head><body>
-<div id="stage"><iframe id="f" src="/index.html"></iframe></div>
+<div id="stage"><iframe id="f"></iframe></div>
 <div id="hud">—</div>
 <script>
   const params = new URLSearchParams(location.search);
@@ -16,6 +16,7 @@
   const P = params.get('p');                  // oppure: frazione 0..1 del documento
   const SC = +(params.get('s') || 1);         // scala di visualizzazione
   const f = document.getElementById('f'), stage = document.getElementById('stage'), hud = document.getElementById('hud');
+  f.src = '/index.html?cb=' + (+new Date());
   f.style.width = W + 'px'; f.style.height = H + 'px'; f.style.transform = `scale(${SC})`;
   stage.style.width = (W * SC) + 'px'; stage.style.height = (H * SC) + 'px';
 

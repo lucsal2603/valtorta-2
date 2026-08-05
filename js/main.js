@@ -94,6 +94,7 @@ function intro() {
   const heroWrap = document.querySelector('.hero-wrap');
   const nav = document.getElementById('nav');
   const caption = portalEl.querySelector('.portal__caption');
+  const portalCow = document.getElementById('portalCow');
 
   const geo = { x: 0, y: 0, r0: 0, rMax: 0 };
   let progress = 0;
@@ -172,10 +173,14 @@ function intro() {
     .to('.hero__row:first-child .w:last-child', { xPercent: 60, opacity: 0, duration: 0.3, ease: 'power2.in' }, 0.26)
     .to('.hero__row--serif .w', { yPercent: 90, opacity: 0, duration: 0.26, stagger: 0.03, ease: 'power2.in' }, 0.24)
     .to('.hero__foot > *, .shape', { opacity: 0, duration: 0.2, ease: 'none' }, 0.22)
-    // a schermo pieno resta il nero e una riga sola. I due tempi non si
-    // sovrappongono, altrimenti l'opacità non arriva mai a uno.
-    .to(caption, { opacity: 1, y: 0, duration: 0.16, ease: 'power3.out' }, 0.72)
-    .to(caption, { opacity: 0, y: -20, duration: 0.1 }, 0.94);
+    // quando il nero ha preso quasi tutto lo schermo, al centro spunta la
+    // mucca infilata nel buco, che scalcia
+    .fromTo(portalCow, { opacity: 0, scale: 0.72, y: -26 },
+      { opacity: 1, scale: 1, y: 0, duration: 0.14, ease: 'back.out(1.7)', immediateRender: false }, 0.62)
+    // e sotto, una riga sola. I due tempi non si sovrappongono, altrimenti
+    // l'opacità non arriva mai a uno.
+    .to(caption, { opacity: 1, y: 0, duration: 0.14, ease: 'power3.out' }, 0.78)
+    .to([caption, portalCow], { opacity: 0, duration: 0.08 }, 0.96);
 })();
 
 /* ─────────────────────────────────────────────

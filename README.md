@@ -81,6 +81,12 @@ Google Fonts, come sull'originale.
   riquadro dell'elemento, ed è il motivo per cui prima sparivano la testa e le
   mani. Così invece la testa esce sopra, le braccia ai lati, e sotto il bordo
   tondo si porta via tutto.
+- **La mucca incastrata** — quando il nero ha preso quasi tutto lo schermo, al
+  centro spunta il posteriore della mucca che scalcia, come se si fosse infilata
+  di testa nel buco. Sedici disegni in `mucca-incastrata.webp`, che sono già un
+  giro completo. Il centraggio lo fa una griglia, non un `transform`: così GSAP
+  può prendersi il transform per l'entrata a molla senza cancellare la
+  posizione.
 - **Il portale** — il cerchio si allarga con `clip-path`, non con `scale`, e il
   fondo è pieno: niente fotografia da deformare. Il raggio e il centro vengono
   misurati sulla O vera e ricalcolati quando cambiano i caratteri o le

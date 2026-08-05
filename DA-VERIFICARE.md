@@ -15,7 +15,7 @@ Sono scritte, non dichiarate dal cliente. Vanno approvate o riscritte.
 |---|---|
 | Titolo in apertura | «Valt**o**rta — *latte, mani, tempo*» |
 | Sottotitolo apertura | «Latteria sociale dal 1954, alta Valle Brembana.» |
-| Didascalia del cerchio a tutto schermo | «Qui il tempo non si compra. *Si aspetta*.» |
+| Didascalia del cerchio a tutto schermo | «Ci vuole pazienza — Qui il tempo non si compra. *Si aspetta*.» |
 | Titolo "La cooperativa" | «Il latte arriva dalle stalle qui sopra. Le mani che lo lavorano sono sempre le stesse.» |
 | Occhiello prodotti | «Tre di questi non esistono da nessun'altra parte con lo stesso nome.» |
 | Titolo "Sul banco" | «E poi tutto il resto di quello che sa fare il latte.» |
@@ -63,7 +63,8 @@ Altrove:
 ## La mucca
 
 Il personaggio nel cerchio (quarantacinque disegni: sta in piedi e muove la
-coda) **non viene dal cliente**: me l'ha passato Lucas, generato a parte.
+coda) e quello infilato nel buco a schermo pieno (sedici disegni)
+**non vengono dal cliente**: me l'ha passato Lucas, generato a parte.
 Prima di andare online va deciso se diventa un elemento del marchio della
 latteria, e se sì va rifatto in vettoriale — adesso sono immagini, quindi non
 sono ridimensionabili all'infinito né modificabili nei dettagli.
