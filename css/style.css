@@ -525,8 +525,9 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
    Il centraggio orizzontale lo fa GSAP con xPercent, non il CSS: è lui
    che scrive il transform. */
 .banco__appesa{
-  position:absolute; top:0; left:66%; z-index:1;
-  width:clamp(88px,10vw,150px); aspect-ratio:340/748;
+  /* al centro, coi pugni infilati un pelo sotto il bordo arancione */
+  position:absolute; top:-3px; left:50%; z-index:1;
+  width:clamp(72px,8vw,118px); aspect-ratio:340/748;
   background:url("../assets/img/mucca-appesa.webp") 50% 0 / contain no-repeat;
   pointer-events:none;
 }
@@ -719,7 +720,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   .storia__ph figure:last-child img{ aspect-ratio:4/3; }
   .foot__cols{ grid-template-columns:1fr; gap:34px; }
   .foot__mucca{ position:static; display:block; width:clamp(140px,42vw,200px); margin:0 0 30px auto; }
-  .banco__appesa{ left:74%; width:clamp(72px,20vw,110px); }
+  .banco__appesa{ width:clamp(60px,16vw,92px); }
   .hscroll__pin{ height:auto; padding:var(--pad-y) 0; }
   .hscroll__track{ overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px;
     -webkit-overflow-scrolling:touch; scrollbar-width:none; }
