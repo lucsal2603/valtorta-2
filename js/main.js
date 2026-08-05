@@ -1,8 +1,20 @@
 /* ═══════════════════════════════════════════════════════════
-   Latteria Sociale di Valtorta — animazioni
-   Lenis (scroll morbido) + GSAP/ScrollTrigger + Matter.js
-   ═══════════════════════════════════════════════════════════ */
+   Latteria Sociale di Valtorta — tutti i movimenti del sito
 
+   Tre attrezzi, ognuno col suo mestiere:
+   - Lenis ammorbidisce la rotella del mouse (lo scroll "scivola");
+   - GSAP muove gli elementi, e il suo ScrollTrigger lega un
+     movimento alla posizione di scorrimento (es. "quando questa
+     sezione entra, fai salire il testo");
+   - Matter.js è un motore di fisica: lo uso solo per il gioco dei
+     prodotti che cadono in apertura.
+
+   Il file è diviso in moduli numerati, nell'ordine della pagina.
+   Ogni modulo è una funzione che parte da sola e non tocca le altre:
+   se una sezione un giorno sparisce, basta togliere il suo modulo. */
+
+/* Se il sistema operativo chiede "riduci le animazioni", questo è vero
+   e ogni modulo salta la sua parte animata: il sito resta fermo ma intero. */
 const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DESKTOP = () => window.matchMedia('(min-width: 861px)').matches;
 
@@ -27,6 +39,13 @@ if (!REDUCED) DA_ENTRARE.forEach(([sel, da]) => gsap.set(sel, da));
 
 /* ─────────────────────────────────────────────
    1. SCROLL MORBIDO
+   Lenis prende in mano la rotella e la traduce
+   in uno scorrimento con inerzia. A dito però
+   lascio fare al telefono (syncTouch false):
+   se ci mettesse mano lui, la sua posizione e
+   quella vera del browser litigherebbero e la
+   pagina scatterebbe. GSAP fa da metronomo per
+   entrambi (ticker → lenis.raf).
    ───────────────────────────────────────────── */
 let lenis = null;
 if (!REDUCED) {
@@ -115,6 +134,13 @@ const scrollTo = (target) => {
 
 /* ─────────────────────────────────────────────
    3. ENTRATA DELLA HERO
+   La sfilata iniziale: cerchio, parole, menu,
+   piè di pagina, forme. Gli stati di partenza
+   li ho già applicati in cima al file (vedi
+   DA_ENTRARE): qui porto tutto ai valori
+   naturali e con clearProps tolgo ogni stile
+   in linea, così ScrollTrigger poi lavora su
+   elementi puliti.
    ───────────────────────────────────────────── */
 function intro() {
   if (REDUCED) return;
@@ -238,6 +264,11 @@ function intro() {
 
 /* ─────────────────────────────────────────────
    5. NAV
+   Tre compiti: il menu a schermo pieno del
+   telefono, gli ancoraggi morbidi (i link #...
+   scivolano con Lenis invece di saltare), e il
+   colore del logo, deciso campionando il punto
+   dello schermo dietro al logo stesso.
    ───────────────────────────────────────────── */
 (function navigation() {
   const nav = document.getElementById('nav');
@@ -305,6 +336,13 @@ function intro() {
 
 /* ─────────────────────────────────────────────
    6. RIVELAZIONI: righe di testo e blocchi
+   Due famiglie: [data-rise] (blocchi che salgono
+   e compaiono) e [data-split] (titoli spezzati
+   parola per parola, ognuna dentro una
+   "feritoia" con overflow nascosto, che sale
+   quando il titolo entra in vista). Lo split lo
+   faccio avvolgendo i soli nodi di testo, così
+   i corsivi <em> restano al loro posto.
    ───────────────────────────────────────────── */
 (function reveals() {
   if (REDUCED) return;
@@ -437,6 +475,13 @@ function intro() {
 
 /* ─────────────────────────────────────────────
    9. MARQUEE — scorre da sola, accelera con lo scroll
+   Duplico il contenuto e lo faccio scorrere di
+   metà larghezza in loop: quando la prima metà
+   esce, la seconda è identica e il salto non si
+   vede. La velocità segue lo scroll (timeScale)
+   e si inverte se torni indietro; wrap() invece
+   del modulo perché il modulo, con la velocità
+   negativa, lascerebbe un buco a sinistra.
    ───────────────────────────────────────────── */
 (function marquee() {
   const row = document.querySelector('[data-marq]');
@@ -473,6 +518,13 @@ function intro() {
 
 /* ─────────────────────────────────────────────
    10. TERRITORIO — l'immagine segue il cursore
+   quickTo è la versione "continua" di un tween:
+   ogni movimento del mouse aggiorna la meta e
+   GSAP insegue con un piccolo ritardo, che è
+   quello che dà la sensazione di peso. Muovo i
+   GUSCI (row__ph, cursor) e lascio ai figli gli
+   effetti CSS: GSAP scrive il transform in linea
+   e cancellerebbe quello delle classi.
    ───────────────────────────────────────────── */
 (function follow() {
   if (!DESKTOP() || REDUCED) return;
@@ -501,6 +553,15 @@ function intro() {
 
 /* ─────────────────────────────────────────────
    11. LE FORME CADONO — Matter.js
+   Al clic costruisco un mondo fisico grande come
+   la hero: tre muri invisibili (pavimento e
+   fianchi), poi per ogni prodotto un corpo
+   circolare nella sua posizione esatta, con la
+   stessa immagine come "vestito". Da lì in poi
+   comanda la gravità, e il mouse può trascinare
+   i pezzi. Le immagini originali spariscono nel
+   momento in cui nascono i corpi: nessuno se ne
+   accorge perché sono identiche.
    ───────────────────────────────────────────── */
 (function physics() {
   const btn = document.getElementById('surprise');
@@ -559,6 +620,9 @@ function intro() {
 
 /* ─────────────────────────────────────────────
    12. RIFINITURE
+   L'anno del copyright scritto da solo, e un
+   refresh generale di ScrollTrigger a pagina
+   carica, quando le misure sono definitive.
    ───────────────────────────────────────────── */
 /* ─────────────────────────────────────────────
    13. IL NOME IN FONDO — si riempie di rame

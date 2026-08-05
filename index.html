@@ -16,14 +16,28 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/mucca-frames.webp?v=35" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=35">
+<link rel="preload" as="image" href="assets/img/mucca-frames.webp?v=37" fetchpriority="high">
+<link rel="stylesheet" href="css/style.css?v=37">
 </head>
 <body>
 
-<!-- ══════════ PRELOADER ══════════ -->
+<!-- ═════════════════════════════════════════════════════════════════════
+     CIAO! Questo è tutto l'HTML del sito: una pagina sola, letta dall'alto
+     verso il basso nello stesso ordine in cui la vedi scorrendo.
+     La struttura è: caricamento → il cerchio nascosto che poi invade lo
+     schermo → menu → apertura con la O → le sezioni una dopo l'altra.
+     Lo stile sta in css/style.css, i movimenti in js/main.js: qui trovi
+     solo i contenuti e le "scatole" su cui poi lavorano gli altri due file.
+     ═════════════════════════════════════════════════════════════════════ -->
+
+<!-- ══════════ IL CARICAMENTO ══════════
+     La prima cosa che appare: velo scuro, la mucca che corre (un WebP
+     animato), il marchio e una barra. Non è una finta attesa: in main.js
+     conto le immagini che servono subito più i caratteri, e il velo se ne
+     va solo quando sono arrivati davvero. L'ho voluto così perché se il
+     velo sparisce prima, sotto si vede la pagina ancora a metà. -->
 <div class="preloader" id="preloader">
-  <img class="preloader__mucca" src="assets/img/mucca-corre.webp?v=35" alt="" aria-hidden="true">
+  <img class="preloader__mucca" src="assets/img/mucca-corre.webp?v=37" alt="" aria-hidden="true">
   <div class="preloader__mark">
     <span class="preloader__line">latteria sociale</span>
     <span class="preloader__line preloader__line--big">Valtorta<span class="dot">.</span></span>
@@ -32,7 +46,12 @@
   <div class="preloader__pct">0%</div>
 </div>
 
-<!-- ══════════ CERCHIO A TUTTO SCHERMO (la O che si apre) ══════════ -->
+<!-- ══════════ IL PORTALE: il cerchio che invade lo schermo ══════════
+     Questo pannello sta FISSO sopra la pagina, invisibile, ritagliato da un
+     cerchio (clip-path) grande esattamente quanto la O del titolo. Quando
+     scorri, il JS fa crescere il raggio del ritaglio finché il nero copre
+     tutto: sembra che sia la O ad allargarsi, in realtà sono due strati che
+     si scambiano senza che si veda. Dentro c'è solo la frase centrale. -->
 <div class="portal" id="portal" aria-hidden="true">
   <div class="portal__caption">
     <p class="portal__kicker">Ci vuole pazienza</p>
@@ -40,7 +59,12 @@
   </div>
 </div>
 
-<!-- ══════════ NAV ══════════ -->
+<!-- ══════════ IL MENU ══════════
+     Logo a sinistra e pillola bianca a destra, sempre visibili. Il logo
+     decide da solo se scriversi chiaro o scuro: in main.js campiono il
+     colore che ha davvero alle spalle, così non devo tenere una lista di
+     sezioni scure che poi dimentico di aggiornare. Sotto gli 860px il menu
+     diventa a tutto schermo e si apre col pulsante tondo (il "burger"). -->
 <header class="nav" id="nav">
   <a class="nav__logo" href="#top">
     <span class="nav__logo-sm">latteria sociale</span>
@@ -56,27 +80,42 @@
   <button class="nav__burger" id="navBurger" aria-label="Apri il menu" aria-expanded="false"><i></i><i></i></button>
 </header>
 
-<!-- ══════════ HERO ══════════ -->
+<!-- ══════════ L'APERTURA ══════════
+     Il trucco di tutta la scena: .hero-wrap è alto 260vh (quasi tre schermi)
+     ma la .hero dentro è "sticky", cioè resta incollata mentre il contenitore
+     scorre. Quella corsa in più è la pellicola su cui il JS appende
+     l'animazione: mucca che si tuffa, titolo che si apre, cerchio che cresce. -->
 <div class="hero-wrap" id="top">
   <section class="hero" id="hero">
     <div class="hero__grain"></div>
 
-    <!-- i prodotti che galleggiano, e al clic cadono: due per prodotto, non di più -->
+    <!-- I prodotti che galleggiano: cinque confezioni disegnate, due copie
+         l'una, posizionate a mano nel CSS (classi s1...s12) per riempire lo
+         schermo senza coprire il titolo. Ondeggiano con una animazione CSS;
+         al clic su "guarda cosa succede" il canvas qui sotto li fa cadere
+         con la fisica vera (Matter.js) e li puoi trascinare col mouse. -->
     <div class="shapes" id="shapes">
-      <img class="shape s1" src="assets/img/fl-agri.webp?v=35" alt="">
-      <img class="shape s2" src="assets/img/fl-yogurt.webp?v=35" alt="">
-      <img class="shape s3" src="assets/img/fl-fiuri.webp?v=35" alt="">
-      <img class="shape s5" src="assets/img/fl-burro.webp?v=35" alt="">
-      <img class="shape s6" src="assets/img/fl-ricotta.webp?v=35" alt="">
-      <img class="shape s7" src="assets/img/fl-agri.webp?v=35" alt="">
-      <img class="shape s8" src="assets/img/fl-ricotta.webp?v=35" alt="">
-      <img class="shape s9" src="assets/img/fl-burro.webp?v=35" alt="">
-      <img class="shape s10" src="assets/img/fl-yogurt.webp?v=35" alt="">
-      <img class="shape s12" src="assets/img/fl-fiuri.webp?v=35" alt="">
+      <img class="shape s1" src="assets/img/fl-agri.webp?v=37" alt="">
+      <img class="shape s2" src="assets/img/fl-yogurt.webp?v=37" alt="">
+      <img class="shape s3" src="assets/img/fl-fiuri.webp?v=37" alt="">
+      <img class="shape s5" src="assets/img/fl-burro.webp?v=37" alt="">
+      <img class="shape s6" src="assets/img/fl-ricotta.webp?v=37" alt="">
+      <img class="shape s7" src="assets/img/fl-agri.webp?v=37" alt="">
+      <img class="shape s8" src="assets/img/fl-ricotta.webp?v=37" alt="">
+      <img class="shape s9" src="assets/img/fl-burro.webp?v=37" alt="">
+      <img class="shape s10" src="assets/img/fl-yogurt.webp?v=37" alt="">
+      <img class="shape s12" src="assets/img/fl-fiuri.webp?v=37" alt="">
     </div>
+    <!-- Il "tavolo da gioco" della fisica: vuoto finché non clicchi. -->
     <canvas id="physics"></canvas>
 
     <div class="hero__stage">
+    <!-- Il titolo. La O di "Valtorta" non è una lettera: è un cerchio scuro
+         con dentro la mucca animata. Le scatole una dentro l'altra servono
+         tutte: o-slot dà la misura del cerchio, o-clip fa il ritaglio (tondo
+         in basso, libero in alto: così testa e coda possono uscire), o-media
+         è quella che il JS tuffa dentro al cerchio quando scorri, o-float dà
+         la spinta su e giù, o-cow è la striscia dei 23 disegni della mucca. -->
       <h1 class="hero__title">
         <span class="hero__row">
           <span class="w" data-w>Valt</span>
@@ -107,7 +146,11 @@
   </section>
 </div>
 
-<!-- ══════════ LA COOPERATIVA ══════════ -->
+<!-- ══════════ LA COOPERATIVA ══════════
+     Prima sezione scura: chi sono, dal 1954. Scorre SOPRA l'apertura (z-index
+     più alto del portale) ed è per questo che il nero del cerchio sparisce
+     coperto, senza stacchi. I tre riquadri in fondo sono i tre principi,
+     con le stesse forme SVG dell'apertura usate come icone. -->
 <section class="sec sec--dark" id="cooperativa">
   <div class="wrap">
     <p class="tag" data-rise>La cooperativa</p>
@@ -137,7 +180,11 @@
   </div>
 </section>
 
-<!-- ══════════ I TRE GRANDI ══════════ -->
+<!-- ══════════ I TRE FORMAGGI ══════════
+     Le tre schede grandi: Agrì, Formai de Mut, Stracchino. Foto vera del
+     cliente a sinistra, testo a destra, etichette a pillola. La prima
+     etichetta di ogni scheda è arancione perché è la credenziale che conta
+     (Presidio Slow Food, DOP). I testi vengono dal sito vecchio, riscritti. -->
 <section class="sec sec--dark sec--flush" id="prodotti">
   <div class="wrap">
     <div class="sec__head">
@@ -176,26 +223,31 @@
   </div>
 </section>
 
-<!-- ══════════ MODELLATO A MANO — scorrimento orizzontale ══════════ -->
-<!-- ══════════ IL GESTO — la sequenza dentro il cerchio ══════════ -->
+<!-- ══════════ IL GESTO ══════════
+     Le dodici foto della modellatura dell'agrì stanno dentro un disco, la
+     stessa forma della O. Scorrendo, la sezione resta ferma (pin) e i
+     fotogrammi avanzano uno alla volta: sei tu che formi il formaggio.
+     Attorno al disco gira un anello di testo scritto su un tracciato SVG
+     circolare; la didascalia sotto cambia col fotogramma e la barra
+     arancione segna dove sei nella corsa. -->
 <section class="gesto" id="mani">
   <div class="gesto__pin">
     <p class="tag gesto__tag">Il gesto</p>
 
     <div class="gesto__disco">
       <div class="gesto__foto">
-        <img class="gesto__fot is-on" src="assets/img/mano-01.webp?v=35" alt="La cagliata sul banco di lavorazione" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-02.webp?v=35" alt="Il casaro stacca una porzione di cagliata" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-03.webp?v=35" alt="La pasta viene lavorata a mano" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-04.webp?v=35" alt="La pasta prende consistenza fra le mani" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-05.webp?v=35" alt="Comincia a formarsi il piccolo cilindro" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-06.webp?v=35" alt="Il cilindro chiuso nel pugno del casaro" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-07.webp?v=35" alt="La forma appoggiata sul banco di acciaio" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-08.webp?v=35" alt="Le dita rifiniscono la superficie dell'agrì" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-09.webp?v=35" alt="Gli agrì allineati sul banco" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-10.webp?v=35" alt="Le forme vengono disposte sul vassoio" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-11.webp?v=35" alt="Decine di agrì freschi pronti per l'asciugatura" loading="lazy" decoding="async">
-        <img class="gesto__fot" src="assets/img/mano-12.webp?v=35" alt="Agrì maturi con la crosta fiorita" loading="lazy" decoding="async">
+        <img class="gesto__fot is-on" src="assets/img/mano-01.webp?v=37" alt="La cagliata sul banco di lavorazione" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-02.webp?v=37" alt="Il casaro stacca una porzione di cagliata" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-03.webp?v=37" alt="La pasta viene lavorata a mano" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-04.webp?v=37" alt="La pasta prende consistenza fra le mani" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-05.webp?v=37" alt="Comincia a formarsi il piccolo cilindro" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-06.webp?v=37" alt="Il cilindro chiuso nel pugno del casaro" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-07.webp?v=37" alt="La forma appoggiata sul banco di acciaio" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-08.webp?v=37" alt="Le dita rifiniscono la superficie dell'agrì" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-09.webp?v=37" alt="Gli agrì allineati sul banco" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-10.webp?v=37" alt="Le forme vengono disposte sul vassoio" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-11.webp?v=37" alt="Decine di agrì freschi pronti per l'asciugatura" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-12.webp?v=37" alt="Agrì maturi con la crosta fiorita" loading="lazy" decoding="async">
       </div>
       <svg class="gesto__anello" viewBox="0 0 300 300" aria-hidden="true">
         <defs><path id="giro" d="M150,150 m-124,0 a124,124 0 1,1 248,0 a124,124 0 1,1 -248,0"/></defs>
@@ -228,7 +280,12 @@
   </div>
 </section>
 
-<!-- ══════════ COME NASCE — le tappe che si impilano ══════════ -->
+<!-- ══════════ COME NASCE ══════════
+     Quattro tappe (latte, caldaia, mani, cantina) che si impilano: ogni
+     scheda è "sticky" con un top leggermente diverso (la variabile --i che
+     vedi nello style), così quella dopo sale sopra lasciando sporgere un
+     dito della precedente, come le forme accatastate sulle assi. Non c'è
+     JS per l'impilamento: è tutto position:sticky del CSS. -->
 <section class="tappe" id="comeNasce">
   <div class="tappe__intro">
     <p class="tag tag--light">Come nasce</p>
@@ -236,7 +293,7 @@
   </div>
   <article class="tappa" style="--i:0">
     <div class="tappa__scheda">
-      <img class="tappa__sfondo" src="assets/img/c-caldaia.webp?v=35" alt="Il latte nella vasca di lavorazione" loading="lazy" decoding="async">
+      <img class="tappa__sfondo" src="assets/img/c-caldaia.webp?v=37" alt="Il latte nella vasca di lavorazione" loading="lazy" decoding="async">
       <div class="tappa__velo"></div>
       <div class="tappa__testo">
         <h3 class="tappa__nome">Il latte<span class="dot">.</span></h3>
@@ -247,7 +304,7 @@
   </article>
   <article class="tappa" style="--i:1">
     <div class="tappa__scheda">
-      <img class="tappa__sfondo" src="assets/img/st-caldaia.webp?v=35" alt="La caldera in rame durante la lavorazione" loading="lazy" decoding="async">
+      <img class="tappa__sfondo" src="assets/img/st-caldaia.webp?v=37" alt="La caldera in rame durante la lavorazione" loading="lazy" decoding="async">
       <div class="tappa__velo"></div>
       <div class="tappa__testo">
         <h3 class="tappa__nome">La caldaia<span class="dot">.</span></h3>
@@ -258,7 +315,7 @@
   </article>
   <article class="tappa" style="--i:2">
     <div class="tappa__scheda">
-      <img class="tappa__sfondo" src="assets/img/c-annusa.webp?v=35" alt="Il casaro controlla i vassoi di agrì appena formati" loading="lazy" decoding="async">
+      <img class="tappa__sfondo" src="assets/img/c-annusa.webp?v=37" alt="Il casaro controlla i vassoi di agrì appena formati" loading="lazy" decoding="async">
       <div class="tappa__velo"></div>
         <span class="tappa__indica" aria-hidden="true"></span>
       <div class="tappa__testo">
@@ -270,7 +327,7 @@
   </article>
   <article class="tappa" style="--i:3">
     <div class="tappa__scheda">
-      <img class="tappa__sfondo" src="assets/img/c-scaffale.webp?v=35" alt="Le forme di Formai de Mut sulle assi della cantina" loading="lazy" decoding="async">
+      <img class="tappa__sfondo" src="assets/img/c-scaffale.webp?v=37" alt="Le forme di Formai de Mut sulle assi della cantina" loading="lazy" decoding="async">
       <div class="tappa__velo"></div>
       <div class="tappa__testo">
         <h3 class="tappa__nome">La cantina<span class="dot">.</span></h3>
@@ -281,14 +338,22 @@
   </article>
 </section>
 
-<!-- ══════════ MARQUEE ══════════ -->
+<!-- ══════════ IL NASTRO ══════════
+     I nomi dei prodotti che scorrono all'infinito. In main.js il contenuto
+     è duplicato e fatto scorrere di metà larghezza in loop; la velocità
+     segue lo scroll e si inverte se torni indietro. aria-hidden perché per
+     chi usa uno screen reader è solo rumore ripetuto. -->
 <div class="marquee" aria-hidden="true">
   <div class="marquee__row" data-marq="1">
     <span>Agrì di Valtorta</span><i></i><span>Formai de Mut DOP</span><i></i><span>Stracchino all'antica</span><i></i><span>Formagella</span><i></i><span>Fiurì</span><i></i><span>Yogurt</span><i></i><span>Burro di montagna</span><i></i><span>Mascherpa</span><i></i>
   </div>
 </div>
 
-<!-- ══════════ CITAZIONE — sezione rame ══════════ -->
+<!-- ══════════ LA CITAZIONE ══════════
+     Una schermata tutta arancione con una riga sola (Caramagna, già citato
+     sul sito vecchio del cliente). Serve da respiro fra due blocchi densi;
+     le forme scure ai lati sono le stesse SVG dell'apertura, quasi
+     trasparenti. Da qui parte anche la mucca appesa: vedi la sezione dopo. -->
 <section class="quote">
   <div class="wrap">
     <p class="tag tag--dark" data-rise>Sul latte</p>
@@ -300,8 +365,17 @@
   <img class="quote__shape c" src="assets/svg/goccia-scura.svg" alt="" loading="lazy" decoding="async">
 </section>
 
-<!-- ══════════ ALTRI PRODOTTI ══════════ -->
+<!-- ══════════ SUL BANCO ══════════
+     La griglia degli altri prodotti, coi packshot del cliente su fondo
+     bianco. L'ultima cella è volutamente diversa (verde, con il rimando
+     allo shop) per chiudere la griglia con un invito invece che con
+     l'ennesima scheda. -->
 <section class="sec sec--light" id="banco">
+  <!-- La mucca appesa a testa in giù: è DENTRO questa sezione ma sembra
+       aggrappata al bordo arancione della citazione qui sopra. Il punto che
+       combacia col bordo è l'inizio della pancia (misurato sul disegno:
+       11% dell'altezza), così mani e braccia restano sopra l'arancione.
+       Perché funzioni, questa sezione ha z-index più alto della citazione. -->
   <span class="banco__appesa" aria-hidden="true"></span>
   <div class="wrap">
     <div class="sec__head sec__head--row">
@@ -347,7 +421,10 @@
   </div>
 </section>
 
-<!-- ══════════ TERRITORIO ══════════ -->
+<!-- ══════════ IL TERRITORIO ══════════
+     Elenco a righe, non a schede: passando col mouse la fotografia insegue
+     il cursore (su telefono niente foto volante, solo le righe). In fondo
+     la fila dei marchi veri del cliente, con la mucca che li indica. -->
 <section class="sec sec--light sec--noline" id="territorio">
   <div class="wrap">
     <div class="sec__head sec__head--row">
@@ -395,7 +472,10 @@
   </div>
 </section>
 
-<!-- ══════════ STORIA ══════════ -->
+<!-- ══════════ SETTANT'ANNI ══════════
+     La storia della cooperativa col materiale d'archivio del cliente:
+     la caldera in rame e i casari storici. Due colonne su schermo largo,
+     una su telefono. -->
 <section class="storia">
   <div class="wrap">
     <div class="storia__grid">
@@ -414,12 +494,16 @@
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- ══════════ LA CHIUSURA ══════════
+     Contatti, orari, la mucca col vasetto di yogurt e il nome VALTORTA
+     gigante che si riempie di arancione man mano che arrivi in fondo
+     (il riempimento è un gradiente ritagliato dal testo, guidato dallo
+     scroll in main.js). I dati sono quelli veri della pagina Contatti. -->
 <div class="foot-wrap">
 <footer class="foot" id="contatti">
   <div class="wrap">
     <p class="foot__claim"><span data-split>Passa a trovarci.</span> <em>Il negozio è aperto anche di domenica.</em></p>
-    <img class="foot__mucca" src="assets/img/mucca-yogurt.webp?v=35"
+    <img class="foot__mucca" src="assets/img/mucca-yogurt.webp?v=37"
          alt="La mucca della latteria mostra un vasetto di yogurt Valtorta"
          loading="lazy" decoding="async" data-rise>
 
@@ -462,12 +546,20 @@
 </footer>
 </div>
 
+<!-- Il dischetto "guarda" che segue il mouse sulle righe del territorio.
+     È diviso in due pezzi apposta: il guscio esterno lo muove GSAP, il
+     disco dentro fa la sua comparsa col CSS. Se fosse un pezzo solo, il
+     transform scritto da GSAP cancellerebbe quello del CSS. -->
 <div class="cursor" id="cursor"><span>guarda</span></div>
 
+<!-- Le tre librerie, da CDN: Lenis ammorbidisce lo scroll, GSAP +
+     ScrollTrigger muovono tutto quello che si muove, Matter.js fa la fisica
+     dei prodotti che cadono (caricata solo se serve, con defer). Il ?v= sui
+     nostri file serve a sfondare la cache quando pubblico una modifica. -->
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
-<script src="js/main.js?v=35"></script>
+<script src="js/main.js?v=37"></script>
 </body>
 </html>

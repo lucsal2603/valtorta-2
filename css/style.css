@@ -1,6 +1,17 @@
 /* ═══════════════════════════════════════════════════════════
-   Latteria Sociale di Valtorta
-   Sistema tipografico e cromatico ispirato a funtownstudio.com
+   Latteria Sociale di Valtorta — tutto lo stile del sito
+
+   Come leggere questo file: in cima ci sono le "variabili" (:root),
+   cioè i colori, i caratteri e le misure scritti UNA volta sola e poi
+   richiamati ovunque con var(--nome). Se domani cambio l'arancione,
+   lo cambio in un punto e cambia in tutto il sito.
+   Poi le regole seguono l'ordine della pagina: caricamento, menu,
+   apertura, e giù una sezione alla volta. In fondo il responsive,
+   cioè le correzioni per gli schermi stretti.
+   Il linguaggio visivo l'ho preso da funtownstudio.com (fondo a
+   puntini, pillola del menu, tipografia grande con il corsivo),
+   ma i colori d'accento sono nostri: il rame della caldera e il
+   verde della mucca del logo del cliente.
    ═══════════════════════════════════════════════════════════ */
 
 :root{
@@ -105,7 +116,10 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   .btn--dark:hover{ background:var(--rame); color:var(--darker); }
 }
 
-/* ═══════════ PRELOADER ═══════════ */
+/* ═══════════ IL CARICAMENTO ═══════════
+   Velo fisso sopra tutto (z-index 9000, più alto di qualunque cosa).
+   La barra è un elemento che parte schiacciato (scaleX 0) e viene
+   allargato dal JS man mano che le immagini arrivano davvero. */
 .preloader{
   position:fixed; inset:0; z-index:9000;
   background:var(--darker); color:var(--card);
@@ -124,7 +138,11 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .preloader__bar i{ display:block; height:100%; background:var(--rame); transform:scaleX(0); transform-origin:left; }
 .preloader__pct{ font-size:13px; font-weight:500; color:var(--su-scuro); font-variant-numeric:tabular-nums; }
 
-/* ═══════════ NAV ═══════════ */
+/* ═══════════ IL MENU ═══════════
+   position:fixed così resta incollato in alto mentre tutto scorre.
+   La pillola bianca ha una doppia ombra morbida per staccarsi da
+   qualsiasi fondo; il logo cambia colore con la classe .is-dark che
+   gli mette il JS quando ha dietro qualcosa di scuro. */
 .nav{
   position:fixed; z-index:900; top:0; left:0; right:0;
   padding:22px var(--pad-x);
@@ -155,7 +173,12 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .nav.is-dark .nav__logo-sm{ color:var(--su-scuro); }
 .nav__logo-lg, .nav__logo-sm{ transition:color .35s var(--ease-out); }
 
-/* ═══════════ HERO ═══════════ */
+/* ═══════════ L'APERTURA ═══════════
+   .hero-wrap alto 260vh + .hero sticky: è il binario su cui corre
+   tutta la scena d'apertura. Qui sotto trovi anche le forme che
+   galleggiano (posizionate a mano, .s1...s12) e le scatole della O
+   con la mucca: ogni scatola ha un compito solo, e i commenti nei
+   singoli blocchi ti dicono quale. */
 .hero-wrap{ height:260vh; position:relative; }
 .hero{
   position:sticky; top:0; height:100svh; overflow:hidden;
@@ -345,7 +368,11 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   max-width:17ch;
 }
 
-/* ═══════════ SEZIONI ═══════════ */
+/* ═══════════ LE SEZIONI ═══════════
+   Regole comuni a tutte le sezioni: il padding con clamp() cresce
+   e cala con lo schermo senza bisogno di breakpoint, e z-index:200
+   le fa scorrere SOPRA il portale nero dell'apertura (che sta a 120).
+   .sec--dark e .sec--light sono le due varianti di fondo. */
 .sec{ position:relative; z-index:200; padding:var(--pad-y) var(--pad-x); }
 .sec--dark{ background:var(--dark); color:var(--card); }
 .sec--light{ background:var(--bg) var(--dots) 0 0/30px 30px; color:var(--darker); }
@@ -514,7 +541,11 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   pointer-events:none;
 }
 
-/* ═══════════ MARQUEE ═══════════ */
+/* ═══════════ IL NASTRO ═══════════
+   La riga che scorre da sola. Qui c'è solo l'aspetto: il movimento
+   (loop infinito che accelera con lo scroll) sta in main.js. Il
+   separatore fra i nomi è un cerchietto fatto in CSS, niente simboli
+   di testo. */
 .marquee{
   position:relative; z-index:200;
   background:var(--darker); color:var(--card);
@@ -532,7 +563,11 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   border-radius:50%; background:var(--rame);
 }
 
-/* ═══════════ CITAZIONE (rame) ═══════════ */
+/* ═══════════ LA CITAZIONE (rame) ═══════════
+   L'unica schermata tutta arancione. z-index 205, uno sopra le
+   sezioni normali: serve alla mucca appesa della sezione dopo, che
+   deve potersi infilare SOTTO questo bordo mentre le mani le restano
+   sopra. overflow:hidden tiene dentro le forme decorative. */
 .quote{
   position:relative; z-index:205; overflow:hidden;
   background:var(--rame); color:var(--darker);
@@ -579,7 +614,11 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   width:clamp(130px,12.5vw,180px); height:auto;
 }
 
-/* ═══════════ GRIGLIA PRODOTTI ═══════════ */
+/* ═══════════ LA GRIGLIA DEI PRODOTTI ═══════════
+   Tre colonne che diventano due e poi una negli schermi stretti.
+   I packshot stanno in celle bianche con un po' di padding perché
+   le foto del cliente hanno sfondi bianchi non perfettamente
+   uguali: il riquadro li uniforma. */
 .grid-prod{
   display:grid; grid-template-columns:repeat(3,1fr);
   gap:clamp(14px,1.6vw,24px);
@@ -602,7 +641,12 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .prod--cta{ background:var(--pascolo-soft); justify-content:center; gap:14px; }
 .prod--cta p{ color:var(--g700); }
 
-/* ═══════════ TERRITORIO — elenco con immagine al cursore ═══════════ */
+/* ═══════════ IL TERRITORIO ═══════════
+   Righe da elenco, separate da filetti. La fotografia che insegue il
+   cursore è .row__ph: fissa sullo schermo, la muove GSAP; dentro,
+   l'immagine fa la comparsa (scala + rotazione) col CSS. Due pezzi
+   separati per lo stesso motivo del cursore: GSAP scrive il transform
+   e cancellerebbe quello della classe. */
 .sec--noline{ padding-top:0; }
 .list{ border-top:1px solid var(--g300); }
 .row{
@@ -648,7 +692,10 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   mix-blend-mode:multiply; transition:opacity .3s ease, transform .3s var(--ease-out); }
 @media (hover:hover) and (pointer:fine){ .marks img:hover{ opacity:1; transform:scale(1.06); } }
 
-/* ═══════════ STORIA ═══════════ */
+/* ═══════════ SETTANT'ANNI ═══════════
+   Due colonne: testo a sinistra, foto d'archivio a destra. La prima
+   foto occupa tutta la larghezza della colonna, le altre due si
+   dividono lo spazio sotto. */
 .storia{ position:relative; z-index:200; background:var(--dark); color:var(--card); padding:var(--pad-y) var(--pad-x); }
 .storia__grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:clamp(30px,5vw,90px); align-items:start; }
 .storia__txt{ display:flex; flex-direction:column; gap:24px; }
@@ -659,7 +706,12 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .storia__ph figure:nth-child(3) img{ aspect-ratio:3/4; }
 .storia__ph figcaption{ margin-top:12px; font-size:13px; line-height:1.5; color:var(--su-scuro); }
 
-/* ═══════════ FOOTER ═══════════ */
+/* ═══════════ LA CHIUSURA ═══════════
+   Contatti in quattro colonne, la mucca col vasetto centrata nello
+   spazio libero a destra della scritta grande, e il nome VALTORTA
+   gigante: il testo fa da maschera a un gradiente (background-clip:
+   text) e la variabile --fw, mossa dal JS, decide fin dove arriva
+   l'arancione. A riposo il nome è quasi invisibile. */
 .foot-wrap{ position:relative; z-index:200; }
 .foot{ background:var(--darker); color:var(--card); padding:var(--pad-y) var(--pad-x) 26px; overflow:hidden; }
 .foot__claim{
@@ -692,7 +744,9 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .foot__top{ transition:color .22s ease; }
 @media (hover:hover) and (pointer:fine){ .foot__top:hover{ color:var(--rame); } }
 
-/* ═══════════ CURSORE ═══════════ */
+/* ═══════════ IL DISCHETTO "GUARDA" ═══════════
+   Il cursore personalizzato delle righe del territorio. Sparisce
+   del tutto su schermi senza mouse (media hover:none). */
 /* stessa divisione dei compiti: GSAP muove il guscio, il disco fa il resto */
 .cursor{
   position:fixed; z-index:500; top:0; left:0; pointer-events:none;
@@ -709,7 +763,13 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .cursor.is-on span{ opacity:1; transform:scale(1); }
 @media (hover:none),(pointer:coarse){ .cursor{ display:none; } }
 
-/* ═══════════ RIVELAZIONI A SCORRIMENTO ═══════════ */
+/* ═══════════ LE RIVELAZIONI ═══════════
+   Gli stati di partenza degli elementi che entrano scorrendo:
+   [data-rise] parte trasparente e un filo più in basso, le parole
+   dei titoli ([data-split], avvolte dal JS in .sw) partono nascoste
+   sotto la propria riga. GSAP le porta a posto quando entrano in
+   vista. Se un giorno un titolo appare "tagliato", il colpevole è
+   quasi sempre qui. */
 [data-rise]{ opacity:0; transform:translateY(22px); }
 /* feritoia per parola: overflow nascosto, con spazio per le discendenti */
 .sw{
@@ -718,10 +778,18 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 }
 .sw > i{ display:inline-block; font-style:inherit; transform:translateY(112%); }
 
-/* ═══════════ RESPONSIVE ═══════════ */
+/* ═══════════ IL RESPONSIVE ═══════════
+   Due soglie sole: 1100px (le griglie a due colonne diventano una)
+   e 860px (telefono: menu a schermo pieno, titolo dell'apertura più
+   piccolo, mucca appesa ridotta col suo cuscino di spazio calcolato
+   sull'altezza reale del disegno). Tengo poche soglie apposta: meno
+   casi da ricordare, meno modi di rompersi. */
 @media (max-width:1100px){
   .coop{ grid-template-columns:1fr; }
   .sec__head--row{ grid-template-columns:1fr; align-items:start; }
+  /* il titolo qui occupa tutta la riga: la sezione si scava lo spazio per
+     la mucca appesa (altezza visibile = larghezza × 1.96) più un margine */
+  #banco{ padding-top:calc(clamp(72px,8vw,118px) * 1.96 + 28px); }
   .case{ grid-template-columns:1fr; }
   .case__media img{ min-height:260px; aspect-ratio:16/10; }
   .grid-prod{ grid-template-columns:repeat(2,1fr); }
@@ -773,6 +841,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   .foot__cols{ grid-template-columns:1fr; gap:34px; }
   .foot__mucca{ position:static; display:block; width:clamp(140px,42vw,200px); margin:6px auto 30px; }
   .banco__appesa{ width:clamp(60px,16vw,92px); }
+  #banco{ padding-top:calc(clamp(60px,16vw,92px) * 1.96 + 28px); }
   .gesto__pin{
     grid-template-columns:1fr; grid-template-areas:"tag" "disco" "testo";
     justify-items:start; padding-block:var(--pad-y);
@@ -780,6 +849,8 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   .gesto__disco{ width:min(78vw,340px); margin-inline:auto; }
 }
 
+/* Chi ha chiesto al sistema di ridurre le animazioni ha una versione
+   ferma ma completa: tutto visibile, niente che si muove. */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{ animation-duration:.01ms !important; animation-iteration-count:1 !important;
     transition-duration:.01ms !important; }
