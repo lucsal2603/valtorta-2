@@ -139,12 +139,13 @@ _qa.html  _sec.html   strumenti di verifica, vedi sotto
 
 ## Verificare il lavoro
 
-Il pannello di anteprima di Claude Code riporta `innerWidth = 0` e sospende le
-animazioni: gli screenshot a pagina scorsa vengono neri e le misure prese in
-JavaScript sono false. Per aggirarlo ci sono due pagine di servizio.
+Un sito così pieno di animazioni legate allo scorrimento è scomodo da
+controllare: per vedere com'è fatta una sezione tocca ogni volta scorrere fin
+lì, aspettare che parta l'animazione e sperare di beccare il fotogramma giusto.
+Per questo mi sono fatto due pagine di servizio.
 
-**`_sec.html`** monta una sezione da sola in cima al documento — così si vede
-davvero, perché il pannello disegna sempre la prima schermata.
+**`_sec.html`** monta una sezione da sola in cima al documento, ferma e senza
+animazioni: la guardi subito, senza scorrere e senza aspettare.
 
 ```
 _sec.html?sel=%23prodotti&z=0.35     una sezione, rimpicciolita per starci tutta
@@ -155,9 +156,9 @@ _sec.html?sel=.portal&portal=0.6     il cerchio aperto al 60%
 
 `z` rimpicciolisce solo la resa, non il layout: le misure in `vw` restano vere.
 
-**`_qa.html`** carica il sito dentro un iframe di larghezza esatta. Lì dentro
-JavaScript funziona, quindi si possono leggere misure vere e verificare gli
-sfori orizzontali.
+**`_qa.html`** carica il sito dentro un riquadro di larghezza esatta, così provo
+una misura di schermo precisa senza ridimensionare la finestra, e leggo le
+misure vere degli elementi.
 
 ```
 _qa.html?w=375&h=780            telefono
