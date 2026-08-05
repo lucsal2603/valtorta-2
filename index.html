@@ -16,8 +16,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Platypi:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/mucca-frames.webp?v=21" fetchpriority="high">
-<link rel="stylesheet" href="css/style.css?v=21">
+<link rel="preload" as="image" href="assets/img/mucca-frames.webp?v=23" fetchpriority="high">
+<link rel="stylesheet" href="css/style.css?v=23">
 </head>
 <body>
 
@@ -62,16 +62,16 @@
 
     <!-- i prodotti che galleggiano, e al clic cadono: due per prodotto, non di più -->
     <div class="shapes" id="shapes">
-      <img class="shape s1" src="assets/img/fl-agri.webp?v=21" alt="">
-      <img class="shape s2" src="assets/img/fl-yogurt.webp?v=21" alt="">
-      <img class="shape s3" src="assets/img/fl-fiuri.webp?v=21" alt="">
-      <img class="shape s5" src="assets/img/fl-burro.webp?v=21" alt="">
-      <img class="shape s6" src="assets/img/fl-ricotta.webp?v=21" alt="">
-      <img class="shape s7" src="assets/img/fl-agri.webp?v=21" alt="">
-      <img class="shape s8" src="assets/img/fl-ricotta.webp?v=21" alt="">
-      <img class="shape s9" src="assets/img/fl-burro.webp?v=21" alt="">
-      <img class="shape s10" src="assets/img/fl-yogurt.webp?v=21" alt="">
-      <img class="shape s12" src="assets/img/fl-fiuri.webp?v=21" alt="">
+      <img class="shape s1" src="assets/img/fl-agri.webp?v=23" alt="">
+      <img class="shape s2" src="assets/img/fl-yogurt.webp?v=23" alt="">
+      <img class="shape s3" src="assets/img/fl-fiuri.webp?v=23" alt="">
+      <img class="shape s5" src="assets/img/fl-burro.webp?v=23" alt="">
+      <img class="shape s6" src="assets/img/fl-ricotta.webp?v=23" alt="">
+      <img class="shape s7" src="assets/img/fl-agri.webp?v=23" alt="">
+      <img class="shape s8" src="assets/img/fl-ricotta.webp?v=23" alt="">
+      <img class="shape s9" src="assets/img/fl-burro.webp?v=23" alt="">
+      <img class="shape s10" src="assets/img/fl-yogurt.webp?v=23" alt="">
+      <img class="shape s12" src="assets/img/fl-fiuri.webp?v=23" alt="">
     </div>
     <canvas id="physics"></canvas>
 
@@ -176,28 +176,53 @@
 </section>
 
 <!-- ══════════ MODELLATO A MANO — scorrimento orizzontale ══════════ -->
-<section class="hscroll" id="mani">
-  <div class="hscroll__pin">
-    <div class="hscroll__head">
-      <div>
-        <p class="tag">Uno per uno</p>
-        <h2 class="hscroll__title">Dalla cagliata al cilindro, <em>senza stampi</em></h2>
+<!-- ══════════ IL GESTO — la sequenza dentro il cerchio ══════════ -->
+<section class="gesto" id="mani">
+  <div class="gesto__pin">
+    <p class="tag gesto__tag">Il gesto</p>
+
+    <div class="gesto__disco">
+      <div class="gesto__foto">
+        <img class="gesto__fot is-on" src="assets/img/mano-01.webp?v=23" alt="La cagliata sul banco di lavorazione" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-02.webp?v=23" alt="Il casaro stacca una porzione di cagliata" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-03.webp?v=23" alt="La pasta viene lavorata a mano" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-04.webp?v=23" alt="La pasta prende consistenza fra le mani" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-05.webp?v=23" alt="Comincia a formarsi il piccolo cilindro" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-06.webp?v=23" alt="Il cilindro chiuso nel pugno del casaro" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-07.webp?v=23" alt="La forma appoggiata sul banco di acciaio" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-08.webp?v=23" alt="Le dita rifiniscono la superficie dell'agrì" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-09.webp?v=23" alt="Gli agrì allineati sul banco" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-10.webp?v=23" alt="Le forme vengono disposte sul vassoio" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-11.webp?v=23" alt="Decine di agrì freschi pronti per l'asciugatura" loading="lazy" decoding="async">
+        <img class="gesto__fot" src="assets/img/mano-12.webp?v=23" alt="Agrì maturi con la crosta fiorita" loading="lazy" decoding="async">
       </div>
-      <p class="hscroll__hint">scorri</p>
+      <svg class="gesto__anello" viewBox="0 0 300 300" aria-hidden="true">
+        <defs><path id="giro" d="M150,150 m-124,0 a124,124 0 1,1 248,0 a124,124 0 1,1 -248,0"/></defs>
+        <text><textPath href="#giro" startOffset="0%">
+          modellato a mano · senza stampi · uno alla volta · modellato a mano · senza stampi · uno alla volta ·
+        </textPath></text>
+      </svg>
     </div>
-    <div class="hscroll__track" id="hTrack">
-      <figure class="frame"><img src="assets/img/mano-01.webp" alt="La cagliata sul banco di lavorazione" loading="lazy" decoding="async"><figcaption>La cagliata sul banco</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-02.webp" alt="Il casaro stacca una porzione di cagliata" loading="lazy" decoding="async"><figcaption>Si stacca la porzione</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-03.webp" alt="La pasta viene lavorata a mano" loading="lazy" decoding="async"><figcaption>Si lavora la pasta</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-04.webp" alt="La pasta prende consistenza fra le mani" loading="lazy" decoding="async"><figcaption>Prende consistenza</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-05.webp" alt="Comincia a formarsi il piccolo cilindro" loading="lazy" decoding="async"><figcaption>Nasce il cilindro</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-06.webp" alt="Il cilindro chiuso nel pugno del casaro" loading="lazy" decoding="async"><figcaption>Chiuso nel pugno</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-07.webp" alt="La forma appoggiata sul banco di acciaio" loading="lazy" decoding="async"><figcaption>Appoggiato al banco</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-08.webp" alt="Le dita rifiniscono la superficie dell'agrì" loading="lazy" decoding="async"><figcaption>Si rifinisce</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-09.webp" alt="Gli agrì allineati sul banco" loading="lazy" decoding="async"><figcaption>In fila sul banco</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-10.webp" alt="Le forme vengono disposte sul vassoio" loading="lazy" decoding="async"><figcaption>Sul vassoio</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-11.webp" alt="Decine di agrì freschi pronti per l'asciugatura" loading="lazy" decoding="async"><figcaption>Pronti ad asciugare</figcaption></figure>
-      <figure class="frame"><img src="assets/img/mano-12.webp" alt="Agrì maturi con la crosta fiorita" loading="lazy" decoding="async"><figcaption>E poi il tempo</figcaption></figure>
+
+    <div class="gesto__testo">
+      <h2 class="gesto__titolo">Nessuno stampo.<br><em>Solo il palmo.</em></h2>
+      <p class="gesto__nota">Ogni agrì passa una volta sola fra le mani del casaro, e prende
+        da lì la sua forma. È la parte che nessuna macchina ha mai imparato a fare.</p>
+      <div class="gesto__voci">
+        <span class="gesto__voce is-on">La cagliata sul banco</span>
+        <span class="gesto__voce">Si stacca la porzione</span>
+        <span class="gesto__voce">Si lavora la pasta</span>
+        <span class="gesto__voce">Prende consistenza</span>
+        <span class="gesto__voce">Nasce il cilindro</span>
+        <span class="gesto__voce">Chiuso nel pugno</span>
+        <span class="gesto__voce">Appoggiato al banco</span>
+        <span class="gesto__voce">Si rifinisce</span>
+        <span class="gesto__voce">In fila sul banco</span>
+        <span class="gesto__voce">Sul vassoio</span>
+        <span class="gesto__voce">Pronti ad asciugare</span>
+        <span class="gesto__voce">E poi il tempo</span>
+      </div>
+      <div class="gesto__barra"><i></i></div>
     </div>
   </div>
 </section>
@@ -398,7 +423,7 @@
 <footer class="foot" id="contatti">
   <div class="wrap">
     <p class="foot__claim"><span data-split>Passa a trovarci.</span> <em>Il negozio è aperto anche di domenica.</em></p>
-    <img class="foot__mucca" src="assets/img/mucca-yogurt.webp?v=21"
+    <img class="foot__mucca" src="assets/img/mucca-yogurt.webp?v=23"
          alt="La mucca della latteria mostra un vasetto di yogurt Valtorta"
          loading="lazy" decoding="async" data-rise>
 
@@ -447,6 +472,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" defer></script>
-<script src="js/main.js?v=21"></script>
+<script src="js/main.js?v=23"></script>
 </body>
 </html>

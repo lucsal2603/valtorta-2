@@ -91,9 +91,11 @@ Google Fonts, come sull'originale.
   dimensioni della finestra.
 - **I tre formaggi** — schede grandi, foto a tutta altezza, etichette a
   pillola. Agrì, Formai de Mut, Stracchino.
-- **Modellato a mano** — le dodici fotografie della lavorazione dell'agrì
-  scorrono in orizzontale mentre si scende. Su telefono diventano una striscia
-  che si trascina.
+- **Il gesto** — le dodici fotografie della lavorazione dell'agrì stanno dentro
+  un disco, la stessa forma della O: scorrendo la sequenza avanza fotogramma per
+  fotogramma, quindi è chi guarda a formare il formaggio. Attorno gira un anello
+  di testo su tracciato circolare, sotto la didascalia del fotogramma in corso e
+  una barra di avanzamento.
 - **Come nasce** — quattro passi appuntati a schermo: il latte, la caldaia, le
   mani, la cantina. Il testo cambia, la fotografia accanto lo seque.
 - **Nastro** — i nomi dei prodotti scorrono e accelerano seguendo lo scroll,

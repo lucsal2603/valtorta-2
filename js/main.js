@@ -290,30 +290,40 @@ function intro() {
 })();
 
 /* ─────────────────────────────────────────────
-   7. SCORRIMENTO ORIZZONTALE — modellato a mano
+   7. IL GESTO — lo scorrimento fa girare la
+   sequenza dentro il disco: sei tu che formi
+   l'agrì, un fotogramma alla volta
    ───────────────────────────────────────────── */
-(function horizontal() {
-  const sec = document.querySelector('.hscroll');
-  const track = document.getElementById('hTrack');
-  if (!sec || !track) return;
+(function gesto() {
+  const sec = document.querySelector('.gesto');
+  if (!sec) return;
+  const foto = sec.querySelectorAll('.gesto__fot');
+  const voci = sec.querySelectorAll('.gesto__voce');
+  const barra = sec.querySelector('.gesto__barra i');
+  if (!foto.length) return;
 
-  ScrollTrigger.matchMedia({
-    '(min-width: 861px)': () => {
-      const dist = () => track.scrollWidth - window.innerWidth + parseInt(getComputedStyle(track).paddingLeft) * 2;
-      const tw = gsap.to(track, {
-        x: () => -dist(),
-        ease: 'none',
-        scrollTrigger: {
-          trigger: sec,
-          start: 'top top',
-          end: () => '+=' + dist(),
-          pin: '.hscroll__pin',
-          scrub: 0.7,
-          invalidateOnRefresh: true,
-          anticipatePin: 1,
-        },
-      });
-      return () => { tw.scrollTrigger?.kill(); tw.kill(); gsap.set(track, { x: 0 }); };
+  let cur = -1;
+  const mostra = (i) => {
+    if (i === cur) return;
+    cur = i;
+    foto.forEach((el, k) => el.classList.toggle('is-on', k === i));
+    voci.forEach((el, k) => el.classList.toggle('is-on', k === i));
+  };
+  mostra(0);
+
+  if (REDUCED) { gsap.set(barra, { scaleX: 1 }); return; }
+
+  ScrollTrigger.create({
+    trigger: sec,
+    start: 'top top',
+    end: () => '+=' + window.innerHeight * 2.4,
+    pin: '.gesto__pin',
+    scrub: 0.5,
+    anticipatePin: 1,
+    invalidateOnRefresh: true,
+    onUpdate: (self) => {
+      mostra(Math.min(foto.length - 1, Math.floor(self.progress * foto.length)));
+      gsap.set(barra, { scaleX: self.progress });
     },
   });
 })();
