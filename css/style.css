@@ -540,7 +540,8 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 /* la mucca con lo yogurt, a destra della chiusura */
 .foot .wrap{ position:relative; }
 .foot__mucca{
-  position:absolute; right:0; top:0;
+  /* centrata nello spazio libero fra la scritta e il margine destro */
+  position:absolute; right:18%; top:0;
   /* l'immagine è alta 868/520 della larghezza: così resta sopra le colonne */
   width:clamp(130px,12.5vw,180px); height:auto;
 }
@@ -636,7 +637,11 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .foot__word{
   margin-top:clamp(60px,8vw,110px);
   font-size:clamp(60px,17.6vw,280px); font-weight:600; letter-spacing:-.05em; line-height:.86;
-  color:#ffffff0d; user-select:none; text-align:center;
+  user-select:none; text-align:center;
+  /* il testo è la maschera: il rame scende da sopra man mano che --fw cresce */
+  color:transparent;
+  background:linear-gradient(180deg, var(--rame) var(--fw,0%), #ffffff0d var(--fw,0%));
+  -webkit-background-clip:text; background-clip:text;
 }
 .foot__bar{
   margin-top:26px; padding-top:22px; border-top:1px solid #ffffff14;
@@ -724,7 +729,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   .storia__ph{ grid-template-columns:1fr; }
   .storia__ph figure:last-child img{ aspect-ratio:4/3; }
   .foot__cols{ grid-template-columns:1fr; gap:34px; }
-  .foot__mucca{ position:static; display:block; width:clamp(140px,42vw,200px); margin:0 0 30px auto; }
+  .foot__mucca{ position:static; display:block; width:clamp(140px,42vw,200px); margin:6px auto 30px; }
   .banco__appesa{ width:clamp(60px,16vw,92px); }
   .hscroll__pin{ height:auto; padding:var(--pad-y) 0; }
   .hscroll__track{ overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px;

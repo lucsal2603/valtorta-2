@@ -477,6 +477,20 @@ function intro() {
 /* ─────────────────────────────────────────────
    12. RIFINITURE
    ───────────────────────────────────────────── */
+/* ─────────────────────────────────────────────
+   13. IL NOME IN FONDO — si riempie di rame
+   dall'alto verso il basso mentre arrivi
+   ───────────────────────────────────────────── */
+(function riempi() {
+  const el = document.querySelector('.foot__word');
+  if (!el) return;
+  if (REDUCED) { el.style.setProperty('--fw', '100%'); return; }
+  gsap.fromTo(el, { '--fw': '0%' }, {
+    '--fw': '100%', ease: 'none',
+    scrollTrigger: { trigger: el, start: 'top 94%', end: 'top 42%', scrub: 0.4 },
+  });
+})();
+
 document.getElementById('yy').textContent = new Date().getFullYear();
 
 window.addEventListener('load', () => ScrollTrigger.refresh());
