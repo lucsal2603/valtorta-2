@@ -284,9 +284,10 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 /* ── forme fluttuanti ── */
 .shapes{ position:absolute; inset:0; z-index:1; pointer-events:none; }
 .shape{
-  position:absolute; width:clamp(26px,3.4vw,54px); height:auto;
+  position:absolute; width:clamp(44px,5vw,84px); height:auto;
   pointer-events:auto; cursor:pointer;
   animation:bob 7s ease-in-out infinite;
+  filter:drop-shadow(0 6px 14px #15161822);
 }
 @keyframes bob{ 0%,100%{transform:translateY(0) rotate(0)} 50%{transform:translateY(-13px) rotate(6deg)} }
 .shape.s1 {top:14%; left:7%;  animation-delay:-.2s}
@@ -500,7 +501,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 
 /* ═══════════ CITAZIONE (rame) ═══════════ */
 .quote{
-  position:relative; z-index:200; overflow:hidden;
+  position:relative; z-index:205; overflow:hidden;
   background:var(--rame); color:var(--darker);
   padding:clamp(90px,13vw,180px) var(--pad-x);
   text-align:center;
@@ -518,6 +519,25 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .quote__shape.a{ top:12%; left:7%; transform:rotate(-14deg); }
 .quote__shape.b{ bottom:14%; left:16%; transform:rotate(9deg); }
 .quote__shape.c{ top:22%; right:9%; transform:rotate(22deg); }
+
+/* la mucca appesa a testa in giù: entra da dietro il bordo arancione della
+   citazione (che sta a z-index più alto) e resta attaccata al confine.
+   Il centraggio orizzontale lo fa GSAP con xPercent, non il CSS: è lui
+   che scrive il transform. */
+.banco__appesa{
+  position:absolute; top:0; left:66%; z-index:1;
+  width:clamp(88px,10vw,150px); aspect-ratio:340/748;
+  background:url("../assets/img/mucca-appesa.webp") 50% 0 / contain no-repeat;
+  pointer-events:none;
+}
+
+/* la mucca con lo yogurt, a destra della chiusura */
+.foot .wrap{ position:relative; }
+.foot__mucca{
+  position:absolute; right:0; top:0;
+  /* l'immagine è alta 868/520 della larghezza: così resta sopra le colonne */
+  width:clamp(130px,12.5vw,180px); height:auto;
+}
 
 /* ═══════════ GRIGLIA PRODOTTI ═══════════ */
 .grid-prod{
@@ -698,6 +718,8 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   .storia__ph{ grid-template-columns:1fr; }
   .storia__ph figure:last-child img{ aspect-ratio:4/3; }
   .foot__cols{ grid-template-columns:1fr; gap:34px; }
+  .foot__mucca{ position:static; display:block; width:clamp(140px,42vw,200px); margin:0 0 30px auto; }
+  .banco__appesa{ left:74%; width:clamp(72px,20vw,110px); }
   .hscroll__pin{ height:auto; padding:var(--pad-y) 0; }
   .hscroll__track{ overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:14px;
     -webkit-overflow-scrolling:touch; scrollbar-width:none; }

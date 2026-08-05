@@ -271,6 +271,21 @@ function intro() {
 })();
 
 /* ─────────────────────────────────────────────
+   6b. LA MUCCA APPESA — scende da dietro il bordo
+   arancione della citazione e resta appesa lì
+   ───────────────────────────────────────────── */
+(function appesa() {
+  const el = document.querySelector('.banco__appesa');
+  if (!el) return;
+  gsap.set(el, { xPercent: -50 });
+  if (REDUCED) return;
+  gsap.fromTo(el, { yPercent: -103, xPercent: -50 }, {
+    yPercent: 0, xPercent: -50, duration: 1.1, ease: 'back.out(1.1)',
+    scrollTrigger: { trigger: '#banco', start: 'top 74%' },
+  });
+})();
+
+/* ─────────────────────────────────────────────
    7. SCORRIMENTO ORIZZONTALE — modellato a mano
    ───────────────────────────────────────────── */
 (function horizontal() {
@@ -433,10 +448,11 @@ function intro() {
       const b = el.getBoundingClientRect();
       const hb = hero.getBoundingClientRect();
       const size = Math.max(b.width, b.height);
+      const scala = b.width / (el.naturalWidth || 100);
       const body = Bodies.circle(b.left - hb.left + b.width / 2, b.top - hb.top + b.height / 2, size / 2, {
         restitution: 0.62,
         friction: 0.05,
-        render: { sprite: { texture: el.src, xScale: b.width / 100, yScale: b.width / 100 } },
+        render: { sprite: { texture: el.src, xScale: scala, yScale: scala } },
       });
       Composite.add(engine.world, body);
       el.style.visibility = 'hidden';

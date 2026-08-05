@@ -63,8 +63,12 @@ Altrove:
 ## La mucca
 
 Il personaggio nel cerchio (quarantacinque disegni: sta in piedi e muove la
-coda) e quello che sporge da dietro la fotografia in "Come nasce"
-**non vengono dal cliente**: me li ha passati Lucas, generati a parte.
+coda), quello che sporge da dietro la fotografia in "Come nasce", la mucca
+appesa sotto la citazione, quella con il vasetto nel fondo pagina e le tre
+confezioni illustrate che galleggiano in apertura **non vengono dal cliente**:
+me li ha passati Lucas, generati a parte. Attenzione alle **etichette
+disegnate**: riportano diciture inventate (indirizzi, pesi, bolli CE) che non
+corrispondono ai prodotti veri — da rifare con i dati reali se si pubblica.
 Prima di andare online va deciso se diventa un elemento del marchio della
 latteria, e se sì va rifatto in vettoriale — adesso sono immagini, quindi non
 sono ridimensionabili all'infinito né modificabili nei dettagli.
