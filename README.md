@@ -61,8 +61,13 @@ Google Fonts, come sull'originale.
 
 ## I momenti
 
-- **Il caricamento** — la mucca corre in loop sopra il marchio, mentre la barra
-  si riempie. È un WebP animato: l'originale pesava 2,6 MB, troppo per la prima
+- **Il caricamento** — la mucca corre in loop sopra il marchio. La barra segue
+  il caricamento **vero** (immagini non differite più i caratteri), non un tempo
+  inventato, e il velo se ne va solo quando è tutto pronto — con un minimo di
+  nove decimi di secondo perché non lampeggi e una rete di sicurezza a nove
+  secondi. Lo stato di partenza dell'entrata è applicato subito, sotto il velo:
+  altrimenti per un istante si vede la pagina già composta e poi tutto salta
+  indietro per rientrare. È un WebP animato: l'originale pesava 2,6 MB, troppo per la prima
   cosa che si vede, quindi è ridotto a dodici fotogrammi a 9 al secondo e 300px
   di larghezza — 229 KB.
 - **Apertura** — la O con la mucca, dodici forme che galleggiano, e un pulsante
@@ -115,6 +120,11 @@ Google Fonts, come sull'originale.
   seguire gli intervalli delle sezioni, che restavano incastrati.
 
 Tutto si spegne con `prefers-reduced-motion`.
+
+Su telefono: `ignoreMobileResize` e il ricalcolo legato alla sola larghezza,
+perché la barra degli indirizzi che compare e scompare cambia l'altezza e
+faceva rimbalzare indietro la pagina; e Lenis non tocca lo scorrimento a dito,
+che resta quello nativo.
 
 ## Struttura
 

@@ -8,6 +8,23 @@ const DESKTOP = () => window.matchMedia('(min-width: 861px)').matches;
 
 gsap.registerPlugin(ScrollTrigger);
 
+/* Su telefono la barra degli indirizzi che compare e scompare cambia l'altezza
+   della finestra e fa scattare un resize: senza questo ScrollTrigger ricalcola
+   i punti di aggancio a metà scorrimento e la pagina rimbalza indietro. */
+ScrollTrigger.config({ ignoreMobileResize: true });
+
+/* Lo stato di partenza dell'entrata va messo SUBITO, mentre il velo del
+   caricamento copre ancora tutto: se lo si applica dopo, per un istante si
+   vede la pagina già composta e poi tutto salta indietro per rientrare. */
+const DA_ENTRARE = [
+  ['#oSlot',                              { scale: 0.2, opacity: 0 }],
+  ['.hero__title .w',                     { yPercent: 108, opacity: 0 }],
+  ['.nav__logo, .nav__menu, .nav__burger',{ y: -18, opacity: 0 }],
+  ['.hero__foot > *',                     { y: 14, opacity: 0 }],
+  ['.shape',                              { scale: 0, opacity: 0 }],
+];
+if (!REDUCED) DA_ENTRARE.forEach(([sel, da]) => gsap.set(sel, da));
+
 /* ─────────────────────────────────────────────
    1. SCROLL MORBIDO
    ───────────────────────────────────────────── */
@@ -17,7 +34,11 @@ if (!REDUCED) {
     duration: 1.5,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    touchMultiplier: 2,
+    // a dito lascio scorrere il telefono per conto suo: se Lenis ci mette
+    // mano, la sua posizione e quella vera del browser litigano e la pagina
+    // torna indietro a scatti
+    syncTouch: false,
+    smoothTouch: false,
   });
   lenis.on('scroll', ScrollTrigger.update);
   gsap.ticker.add((time) => lenis.raf(time * 1000));
@@ -39,27 +60,57 @@ const scrollTo = (target) => {
   document.body.classList.add('is-locked');
   lenis?.stop();
 
-  const done = () => {
-    el.classList.add('is-out');
+  let uscito = false;
+  const esci = () => {
+    if (uscito) return;
+    uscito = true;
     document.body.classList.remove('is-locked');
     lenis?.start();
-    setTimeout(() => el.remove(), 700);
-    intro();
+    intro();                                    // entra mentre il velo si dissolve
+    if (REDUCED) { el.remove(); return; }
+    gsap.to(el, { autoAlpha: 0, duration: 0.5, ease: 'power2.out',
+      onComplete: () => el.remove() });
   };
 
-  if (REDUCED) { done(); return; }
+  if (REDUCED) { esci(); return; }
 
-  const tl = gsap.timeline({ defaults: { ease: 'power2.out' }, onComplete: done });
-  tl.set(bar, { scaleX: 0 })
-    .to(bar, { scaleX: 0.35, duration: 0.5 })
-    .to(bar, { scaleX: 0.72, duration: 0.55 }, '+=0.12')
-    .to(bar, { scaleX: 1, duration: 0.45 }, '+=0.1')
-    .to(el, { autoAlpha: 0, duration: 0.5, ease: 'power4.out' }, '+=0.15');
+  // la barra segue il caricamento vero, non un tempo inventato
+  const stato = { v: 0 };
+  const dipingi = () => {
+    gsap.set(bar, { scaleX: stato.v });
+    pct.textContent = Math.round(stato.v * 100) + '%';
+  };
+  const porta = (v) => gsap.to(stato, { v, duration: 0.5, ease: 'power2.out', onUpdate: dipingi });
+  dipingi();
 
-  tl.eventCallback('onUpdate', () => {
-    const v = Math.round(Math.min(gsap.getProperty(bar, 'scaleX') * 100, 100));
-    pct.textContent = v + '%';
+  // conto le immagini che servono subito (le altre sono differite) più i caratteri
+  const subito = [...document.images].filter((im) => im.loading !== 'lazy');
+  const totale = subito.length + 1;
+  let fatte = 0;
+  const passo = () => {
+    fatte++;
+    porta(Math.min(1, fatte / totale));
+    if (fatte >= totale) pronto();
+  };
+
+  const PARTENZA = performance.now();
+  const MINIMO = 900;                            // così il velo non lampeggia
+  const pronto = () => {
+    if (uscito) return;
+    porta(1);
+    const resta = Math.max(0, MINIMO - (performance.now() - PARTENZA));
+    gsap.delayedCall((resta + 300) / 1000, esci);
+  };
+
+  subito.forEach((im) => {
+    if (im.complete) { passo(); return; }
+    im.addEventListener('load', passo, { once: true });
+    im.addEventListener('error', passo, { once: true });
   });
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(passo);
+
+  // rete di sicurezza: se qualcosa non arriva, non si resta chiusi fuori
+  gsap.delayedCall(9, esci);
 })();
 
 /* ─────────────────────────────────────────────
@@ -67,15 +118,15 @@ const scrollTo = (target) => {
    ───────────────────────────────────────────── */
 function intro() {
   if (REDUCED) return;
-  const words = document.querySelectorAll('.hero__title .w');
-  const oSlot = document.getElementById('oSlot');
+  const pulisci = { clearProps: 'transform,opacity' };
   const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
 
-  tl.from(oSlot, { scale: 0.2, opacity: 0, duration: 0.9, ease: 'power4.out' })
-    .from(words, { yPercent: 108, opacity: 0, duration: 0.85, stagger: 0.055 }, 0.12)
-    .from('.nav__logo, .nav__menu, .nav__burger', { y: -18, opacity: 0, duration: 0.6, stagger: 0.06 }, 0.35)
-    .from('.hero__foot > *', { y: 14, opacity: 0, duration: 0.6, stagger: 0.07 }, 0.5)
-    .from('.shape', { scale: 0, opacity: 0, duration: 0.7, stagger: { each: 0.035, from: 'random' }, ease: 'back.out(1.8)' }, 0.3);
+  tl.to('#oSlot', { scale: 1, opacity: 1, duration: 0.9, ease: 'power4.out', ...pulisci })
+    .to('.hero__title .w', { yPercent: 0, opacity: 1, duration: 0.85, stagger: 0.055, ...pulisci }, 0.12)
+    .to('.nav__logo, .nav__menu, .nav__burger', { y: 0, opacity: 1, duration: 0.6, stagger: 0.06, ...pulisci }, 0.35)
+    .to('.hero__foot > *', { y: 0, opacity: 1, duration: 0.6, stagger: 0.07, ...pulisci }, 0.5)
+    .to('.shape', { scale: 1, opacity: 1, duration: 0.7, stagger: { each: 0.035, from: 'random' },
+                    ease: 'back.out(1.8)', ...pulisci }, 0.3);
 }
 
 /* ─────────────────────────────────────────────
@@ -101,7 +152,12 @@ function intro() {
   function measure() {
     // la hero è appiccicata in cima: la posizione della O a riposo è
     // quella che ha quando lo scorrimento della hero è ancora a zero
+    // durante l'entrata la O è rimpicciolita da GSAP: la misuro senza
+    // trasformazioni, se no raggio e centro escono sbagliati
+    const inLinea = oSlot.style.transform;
+    oSlot.style.transform = 'none';
     const b = oSlot.getBoundingClientRect();
+    oSlot.style.transform = inLinea;
     const w = b.width || parseFloat(getComputedStyle(oSlot).width) || 0;
     if (!w) return;
     geo.x = b.left + w / 2;
@@ -124,10 +180,14 @@ function intro() {
   // le web font cambiano la larghezza del titolo, quindi la posizione della O
   document.fonts?.ready.then(() => { measure(); ScrollTrigger.refresh(); });
   window.addEventListener('load', measure);
-  let rz;
+  let rz, larghezzaNota = window.innerWidth;
   window.addEventListener('resize', () => {
+    // solo un vero cambio di larghezza rifà i conti: l'altezza su telefono
+    // balla da sola con la barra degli indirizzi
+    if (window.innerWidth === larghezzaNota) { measure(); return; }
+    larghezzaNota = window.innerWidth;
     clearTimeout(rz);
-    rz = setTimeout(() => { measure(); ScrollTrigger.refresh(); }, 120);
+    rz = setTimeout(() => { measure(); ScrollTrigger.refresh(); }, 160);
   });
 
   if (REDUCED) {
