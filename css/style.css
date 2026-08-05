@@ -200,17 +200,17 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
    La scatola della maschera ritaglia tutto quello che le esce fuori, perciò
    è larga e alta il triplo del disco: testa e braccia devono poterne uscire.
    Dentro, due strati sommati — il cerchio del disco, più un rettangolo che
-   copre tutto quello che sta sopra l'88% della sua altezza. Sotto quella
+   copre tutto quello che sta sopra il 90% della sua altezza. Sotto quella
    riga comanda il cerchio, sopra non c'è nessun limite. */
 .o-clip{
   position:absolute; left:-100%; top:-100%; width:300%; height:300%;
   display:block;
   -webkit-mask-image:
     radial-gradient(ellipse 16.6667% 16.6667% at 50% 50%, #000 99%, transparent 100%),
-    linear-gradient(to bottom, #000 60.333%, transparent 60.333%);
+    linear-gradient(to bottom, #000 63.333%, transparent 63.333%);
   mask-image:
     radial-gradient(ellipse 16.6667% 16.6667% at 50% 50%, #000 99%, transparent 100%),
-    linear-gradient(to bottom, #000 60.333%, transparent 60.333%);
+    linear-gradient(to bottom, #000 63.333%, transparent 63.333%);
   -webkit-mask-repeat:no-repeat; mask-repeat:no-repeat;
   -webkit-mask-composite:source-over; mask-composite:add;
 }
@@ -230,9 +230,9 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 }
 
 .o-cow{
-  position:absolute; left:50%; top:-16%; width:105%;
+  position:absolute; left:50%; top:-10%; width:72%;
   transform:translateX(-50%);
-  aspect-ratio:340/455;
+  aspect-ratio:300/581;
   background:url("../assets/img/mucca-frames.webp") 50% 0 / 100% 2300% no-repeat;
   animation:mucca 5s steps(1,end) infinite;
 }
@@ -279,7 +279,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
   69.94%  { background-position-y:0.0%; }
   72.0%, 100% { background-position-y:0%; }
 }
-.o-cow.is-hop{ animation:none; background-position-y:77.273%; }  /* in cima all'oscillazione */
+.o-cow.is-hop{ animation-play-state:paused; }  /* durante il tuffo la coda si ferma */
 
 /* ── forme fluttuanti ── */
 .shapes{ position:absolute; inset:0; z-index:1; pointer-events:none; }

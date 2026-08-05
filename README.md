@@ -25,10 +25,10 @@ cadono, sezioni scure che scorrono sopra l'apertura.
 Il pezzo che tiene insieme tutto è **la O**.
 
 Nel titolo d'apertura, la O di «Valtorta» non è una lettera: è un disco scuro
-con dentro la mucca, che sporge con la parte alta della testa sopra il cerchio,
-allarga le braccia fuori dai bordi e si taglia sul bordo tondo all'altezza
-della pancia. Apre le braccia dandosi una spinta verso l'alto, poi richiude
-tutto e resta ferma un momento prima di ricominciare.
+con dentro la mucca, che sporge con le corna e le orecchie sopra il cerchio e si
+taglia sul bordo tondo all'altezza delle zampe. Sta in piedi e muove la coda,
+con una leggera spinta verso l'alto, poi resta ferma un momento prima di
+ricominciare.
 
 Quando si comincia a scorrere fa un saltello, con le braccia in alto, e
 sprofonda dentro il cerchio finché non sparisce. Solo allora il cerchio si
@@ -65,15 +65,15 @@ Google Fonts, come sull'originale.
   in basso a destra: cliccandolo le forme cadono davvero (Matter.js) e si
   possono spingere col mouse.
 - **La mucca** — quarantacinque disegni, che però sono un palindromo esatto:
-  in `mucca-frames.webp` ne stanno ventitré (dal riposo al picco), rigiocati
+  in `mucca-frames.webp` ne stanno ventitré (dal riposo al culmine), rigiocati
   avanti e poi indietro. Li muove un'animazione CSS, che gira fuori dal thread
   principale e quindi non salta nemmeno mentre il resto della pagina lavora. Il
   giro dura cinque secondi: trentacinque scatti di movimento e poi la posa di
   riposo ferma per l'ultimo quarto. L'oscillazione si ferma al diciottesimo
-  disegno invece che al ventitreesimo, così le braccia escono dal cerchio senza
-  spalancarsi del tutto — è il numero da cambiare se le si vuole più o meno
-  aperte. Il galleggio è una seconda animazione, su un elemento a parte, così il
-  saltello e il ciclo dei disegni non se la portano via.
+  disegno invece che al ventitreesimo — è il numero da cambiare per farla più o
+  meno ampia. La spinta verso l'alto è una seconda animazione, su un elemento a
+  parte, così il saltello e il ciclo dei disegni non se la portano via; dura
+  esattamente quanto il ciclo, quindi respiro e coda restano in sincrono.
 - **Il taglio** — una maschera a due strati (il cerchio del disco, più un
   rettangolo che copre tutto quello che sta sopra l'88% della sua altezza) su un
   elemento **fermo**, non su quello che GSAP trasla. La scatola della maschera è

@@ -62,8 +62,8 @@ Altrove:
 
 ## La mucca
 
-Il personaggio nel cerchio (quindici disegni: braccia che si aprono e orecchie
-che si alzano, poi tutto si richiude) **non viene dal cliente**: me l'ha passato Lucas, generato a parte.
+Il personaggio nel cerchio (quarantacinque disegni: sta in piedi e muove la
+coda) **non viene dal cliente**: me l'ha passato Lucas, generato a parte.
 Prima di andare online va deciso se diventa un elemento del marchio della
 latteria, e se sì va rifatto in vettoriale — adesso sono immagini, quindi non
 sono ridimensionabili all'infinito né modificabili nei dettagli.
