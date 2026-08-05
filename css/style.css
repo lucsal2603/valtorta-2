@@ -457,9 +457,14 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 .steps__dots i{ width:26px; height:3px; border-radius:2px; background:#ffffff26; transition:background-color .35s ease; }
 .steps__dots i.is-on{ background:var(--rame); }
 .steps__right{ height:100%; display:flex; align-items:center; }
+/* il telaio porta la misura e NON ritaglia: la mucca che indica vive qui
+   fuori dal bordo. Il ritaglio (angoli tondi) sta sul riquadro interno. */
+.steps__frame{
+  position:relative; width:100%; aspect-ratio:4/5; max-height:74vh; margin-inline:auto;
+}
 .steps__media{
-  position:relative; width:100%; aspect-ratio:4/5; max-height:74vh;
-  border-radius:var(--r); overflow:hidden; background:var(--dark); margin-inline:auto;
+  position:absolute; inset:0;
+  border-radius:var(--r); overflow:hidden; background:var(--dark);
 }
 /* la mucca sporge da dietro il bordo sinistro della foto e indica il testo */
 .steps__indica{
