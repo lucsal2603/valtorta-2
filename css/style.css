@@ -468,7 +468,7 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
 }
 /* la mucca sporge da dietro il bordo sinistro della foto e indica il testo */
 .steps__indica{
-  position:absolute; right:100%; bottom:8%;
+  position:absolute; right:100%; top:8%;
   width:clamp(84px,9.5vw,150px); aspect-ratio:823/965;
   background:url("../assets/img/mucca-indica.webp") 100% 50% / contain no-repeat;
   pointer-events:none; z-index:3;
