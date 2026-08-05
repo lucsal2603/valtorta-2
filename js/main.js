@@ -277,12 +277,15 @@ function intro() {
 (function appesa() {
   const el = document.querySelector('.banco__appesa');
   if (!el) return;
-  gsap.set(el, { xPercent: -50 });
+  // il punto di presa: il centro delle mani (5.5% dell'altezza del disegno)
+  // finisce esattamente sul bordo arancione
+  gsap.set(el, { xPercent: -50, yPercent: -5.5 });
   if (REDUCED) return;
-  gsap.fromTo(el, { yPercent: -103, xPercent: -50 }, {
-    yPercent: 0, xPercent: -50, duration: 1.1, ease: 'back.out(1.1)',
-    scrollTrigger: { trigger: '#banco', start: 'top 74%' },
-  });
+  const tl = gsap.timeline({ scrollTrigger: { trigger: '#banco', start: 'top 74%' } });
+  tl.fromTo(el, { opacity: 0 }, { opacity: 1, duration: 0.28, ease: 'none' }, 0)
+    // scende sull'arancione e aggancia il bordo con un piccolo rimbalzo
+    .fromTo(el, { yPercent: -58, xPercent: -50 },
+      { yPercent: -5.5, xPercent: -50, duration: 1.0, ease: 'back.out(1.4)' }, 0);
 })();
 
 /* ─────────────────────────────────────────────

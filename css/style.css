@@ -524,9 +524,14 @@ em{ font-family:var(--ffs); font-style:italic; font-weight:400; }
    citazione (che sta a z-index più alto) e resta attaccata al confine.
    Il centraggio orizzontale lo fa GSAP con xPercent, non il CSS: è lui
    che scrive il transform. */
+/* la sezione sale sopra la citazione: le mani della mucca appesa devono
+   dipingersi SOPRA l'arancione, e un figlio non può scavalcare la propria
+   sezione (stacking context) */
+#banco{ z-index:206; }
 .banco__appesa{
-  /* al centro, coi pugni infilati un pelo sotto il bordo arancione */
-  position:absolute; top:-3px; left:50%; z-index:1;
+  /* al centro; il punto di presa è il centro delle mani, che GSAP porta
+     a cavallo del bordo con yPercent -5.5 (misurato sul disegno) */
+  position:absolute; top:0; left:50%; z-index:1;
   width:clamp(72px,8vw,118px); aspect-ratio:340/748;
   background:url("../assets/img/mucca-appesa.webp") 50% 0 / contain no-repeat;
   pointer-events:none;
