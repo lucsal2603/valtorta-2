@@ -96,13 +96,19 @@ Google Fonts, come sull'originale.
   fotogramma, quindi è chi guarda a formare il formaggio. Attorno gira un anello
   di testo su tracciato circolare, sotto la didascalia del fotogramma in corso e
   una barra di avanzamento.
-- **Come nasce** — quattro passi appuntati a schermo: il latte, la caldaia, le
-  mani, la cantina. Il testo cambia, la fotografia accanto lo seque.
+- **Come nasce** — quattro tappe che si impilano: il latte, la caldaia, le mani,
+  la cantina. Ogni scheda si incolla in cima e quella dopo le sale sopra
+  lasciandone sporgere un dito, come le forme sulle assi. La mucca sporge dal
+  fianco della terza e indica il testo.
 - **Nastro** — i nomi dei prodotti scorrono e accelerano seguendo lo scroll,
   invertendo il verso se si torna indietro.
 - **La citazione** — schermata rame, una riga sola.
 - **Il territorio** — elenco di righe: passando sopra, la fotografia insegue il
   cursore con un po' di ritardo.
+- **La navigazione** — logo e menu non si nascondono mai. Il logo decide da solo
+  se schiarirsi: campiona il colore che ha davvero dietro (e il ritaglio del
+  portale, che non è campionabile perché non prende il puntatore) invece di
+  seguire gli intervalli delle sezioni, che restavano incastrati.
 
 Tutto si spegne con `prefers-reduced-motion`.
 

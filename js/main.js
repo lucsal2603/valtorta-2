@@ -145,7 +145,6 @@ function intro() {
       end: 'bottom bottom',
       scrub: 0.6,
       onUpdate: (self) => {
-        nav.classList.toggle('is-hidden', self.progress > 0.5);
         // al primo accenno di scorrimento il ciclo si ferma sulle braccia
         // alzate: è la posa con cui prende lo slancio
         oCow.classList.toggle('is-hop', self.progress > 0.004);
@@ -201,15 +200,47 @@ function intro() {
     });
   });
 
-  // il logo passa a chiaro sulle sezioni scure
-  document.querySelectorAll('.sec--dark, .steps, .hscroll, .storia, .foot, .marquee').forEach((sec) => {
-    ScrollTrigger.create({
-      trigger: sec,
-      start: 'top 46px',
-      end: 'bottom 46px',
-      onToggle: (self) => nav.classList.toggle('is-dark', self.isActive),
-    });
-  });
+  // il logo passa a chiaro quando dietro ha qualcosa di scuro. Invece di
+  // inseguire gli intervalli di ogni sezione, guardo il colore che sta
+  // davvero sotto l'angolo del logo: funziona con qualunque sezione, anche
+  // col nero del portale, e non può restare incastrato.
+  const logo = nav.querySelector('.nav__logo');
+  const scuro = (c) => {
+    const m = String(c).match(/\d+/g);
+    if (!m) return false;
+    const [r, g, b] = m.map(Number);
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) < 128;   // luminanza
+  };
+  const portale = document.getElementById('portal');
+  const aggiorna = () => {
+    const b = logo.getBoundingClientRect();
+    // il portale non si può campionare (pointer-events:none): guardo se il
+    // suo ritaglio circolare copre già l'angolo del logo
+    if (portale && +getComputedStyle(portale).opacity > 0.5) {
+      const cs = getComputedStyle(portale);
+      const m = cs.clipPath.match(/circle\(([\d.]+)px at ([\d.]+)px ([\d.]+)px\)/);
+      if (m) {
+        const [, r, cx, cy] = m.map(Number);
+        if (Math.hypot(b.left + b.width / 2 - cx, b.top + b.height / 2 - cy) < r) {
+          nav.classList.add('is-dark');
+          return;
+        }
+      }
+    }
+    nav.style.pointerEvents = 'none';
+    const sotto = document.elementFromPoint(b.left + b.width / 2, b.top + b.height / 2);
+    nav.style.pointerEvents = '';
+    if (!sotto) return;
+    let el = sotto, colore = 'rgba(0, 0, 0, 0)';
+    while (el && colore === 'rgba(0, 0, 0, 0)') {
+      colore = getComputedStyle(el).backgroundColor;
+      el = el.parentElement;
+    }
+    nav.classList.toggle('is-dark', scuro(colore));
+  };
+  aggiorna();
+  ScrollTrigger.addEventListener('refresh', aggiorna);
+  (lenis ? lenis.on.bind(lenis, 'scroll') : (f) => addEventListener('scroll', f, { passive: true }))(aggiorna);
 })();
 
 /* ─────────────────────────────────────────────
@@ -329,36 +360,18 @@ function intro() {
 })();
 
 /* ─────────────────────────────────────────────
-   8. COME NASCE — slider appuntato a quattro passi
+   8. COME NASCE — le tappe si impilano da sole
+   con position:sticky; qui aggiungo solo la
+   salita di ciascuna quando entra in campo
    ───────────────────────────────────────────── */
-(function steps() {
-  const sec = document.querySelector('.steps');
-  if (!sec) return;
-  const items = sec.querySelectorAll('.step');
-  const media = sec.querySelectorAll('.steps__media img');
-  const dots = sec.querySelectorAll('.steps__dots i');
-  let cur = 0;
-
-  const show = (i) => {
-    if (i === cur) return;
-    cur = i;
-    items.forEach((el, k) => el.classList.toggle('is-on', k === i));
-    media.forEach((el, k) => el.classList.toggle('is-on', k === i));
-    dots.forEach((el, k) => el.classList.toggle('is-on', k === i));
-  };
-
-  ScrollTrigger.create({
-    trigger: sec,
-    start: 'top top',
-    end: () => '+=' + window.innerHeight * (items.length - 0.2),
-    pin: '.steps__pin',
-    scrub: false,
-    anticipatePin: 1,
-    invalidateOnRefresh: true,
-    onUpdate: (self) => {
-      const i = Math.min(items.length - 1, Math.floor(self.progress * items.length));
-      show(i);
-    },
+(function tappe() {
+  const carte = document.querySelectorAll('.tappa__scheda');
+  if (!carte.length || REDUCED) return;
+  carte.forEach((c) => {
+    gsap.from(c, {
+      yPercent: 6, opacity: 0, duration: 0.8, ease: 'power3.out',
+      scrollTrigger: { trigger: c, start: 'top 92%' },
+    });
   });
 })();
 
